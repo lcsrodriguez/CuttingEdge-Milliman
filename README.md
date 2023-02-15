@@ -4,8 +4,16 @@
 
 ## Overview
 
-
 *Project conducted in collaboration with [Milliman](https://www.milliman.com/en/)*.
+
+
+## Getting started
+
+```bash
+python3 --version
+pip3 -V
+pip3 install -r requirements.txt
+```
 
 ## References
 
