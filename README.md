@@ -7,6 +7,18 @@
 *Project conducted in collaboration with [Milliman](https://www.milliman.com/en/)*.
 
 
+## Architecture
+
+```mermaid
+  graph TD;
+      Model --> RatesModel
+      Model --> EquityModel
+      RatesModel --> VasicekModel
+      RatesModel --> CIRModel
+      RatesModel --> HullWhiteModel
+      EquityModel --> BlackScholesModel
+```
+
 ## Getting started
 
 ```bash
