@@ -9,6 +9,8 @@
 
 ## Architecture
 
+The dependence tree below shows the links between each declared class in the source code.
+
 ```mermaid
   graph TD;
       Model --> RatesModel
@@ -19,6 +21,8 @@
       EquityModel --> BlackScholesModel
 ```
 
+**Remark**: `Model`, `RatesModel` and `EquityModel` are *abstract* classes and do not contain any implemented methods.
+
 ## Getting started
 
 ```bash
@@ -28,6 +32,10 @@ pip3 install -r requirements.txt
 ```
 
 ## References
+
+1. Ioane MUNI-TOKE, *Modèles stochastiques de taux d’intérêts*, 2011
+2. Lionel GABET, Frédéric ABERGEL, Ioane MUNI-TOKE, *Introduction aux mathématiques financières*, 2010
+
 
 ## License
 
