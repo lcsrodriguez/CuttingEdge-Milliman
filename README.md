@@ -4,6 +4,12 @@
 
 ## Overview
 
+1. Implementation of path simulators for:
+    - Interest rates models: Vasicek, Cox-Ingersoll-Ross (CIR), Hull & White
+    - Equity-index models: Black-Scholes with stochastic rates
+2. Analysis via derivatives pricing 
+
+
 *Project conducted in collaboration with [Milliman](https://www.milliman.com/en/)*.
 
 
