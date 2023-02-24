@@ -19,6 +19,6 @@ pip3 install -r requirements.txt
 
 ## License
 
-[GNU GPL v3](LICENSE)
+[See `LICENSE` file](LICENSE)
 - **Amal BACHA - Dalia BARBI - Khalil BATTIKH - Lucas RODRIGUEZ - Naïm SOUNI**
 - *Academic works (January 2023 - Present)*
