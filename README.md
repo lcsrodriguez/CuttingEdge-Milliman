@@ -9,7 +9,7 @@
 
 ## Architecture
 
-The dependence tree below shows the links between each declared class in the source code.
+The dependency tree below shows the links between each declared class in the source code.
 
 ```mermaid
   graph TD;
