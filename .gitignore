@@ -1,2 +1,3 @@
+site/*
 *.py
 .ipynb_checkpoints/
