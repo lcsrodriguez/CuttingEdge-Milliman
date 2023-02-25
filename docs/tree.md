@@ -14,13 +14,13 @@
 ```
 
 
-!!! note
+!!! note "Remark"
     `Model`, `RatesModel` and `EquityModel` are *abstract* classes and do not contain any implemented methods.
 
 
 ## File tree
 
-!!! quote Remark
+!!! note "Remark"
     To reproduce this graph, please run `tree -L 3 >> ~/tmp/out_tree` for instance to write the formatted tree into the file `out_tree`.
 
 ```
