@@ -1,0 +1,7 @@
+site_name: Cutting-Edge project | Milliman
+theme:
+  name: "material"
+
+nav:
+  - Home: index.md
+  - reference.md

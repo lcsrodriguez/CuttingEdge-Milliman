@@ -58,7 +58,14 @@ ls out/
 cd out/
 ```
 
-4. *(Optional)* Convert the Jupyter Notebook file (`.ipynb` extension) into a Python script file (`.py`)
+### Build the documentation
+
+1. Install these additional requirements
+```bash
+pip3 install mkdocs "mkdocstrings[python]" mkdocs-material
+```
+
+2. Convert the Jupyter Notebook file (`.ipynb` extension) into a Python script file (`.py`)
 ```bash
 jupyter nbconvert --to script main.ipynb --output out/main
 cat out/main.py
