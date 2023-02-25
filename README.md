@@ -31,16 +31,36 @@ The dependency tree below shows the links between each declared class in the sou
 
 ## Getting started
 
-0. Verify the requirements to execute the Jupyter Notebook
+0. Clone the repository:
+```bash
+git clone git@github.com:lcsrodriguez/CuttingEdge-Milliman.git
+cd CuttingEdge-Milliman/
+```
+
+One can also download the repository by clicking on the green button **Code** > **Download ZIP**.
+
+1. Verify the requirements to execute the Jupyter Notebook
 ```bash
 python3 --version
 pip3 -V
 pip3 install -r requirements.txt
 ```
 
-1. Convert the Jupyter Notebook file (`.ipynb` extension) into a Python script file (`.py`)
+2. Run the Jupyter-Notebook 
+```bash
+jupyter-notebook main.ipynb
+```
+
+3. Check and handle the figures stored in `out/`:
+```bash
+ls out/
+cd out/
+```
+
+4. *(Optional)* Convert the Jupyter Notebook file (`.ipynb` extension) into a Python script file (`.py`)
 ```bash
 jupyter nbconvert --to script main.ipynb --output out/main.py
+cat out/main.py
 ```
 
 ## References
