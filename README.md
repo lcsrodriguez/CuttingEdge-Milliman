@@ -31,10 +31,16 @@ The dependency tree below shows the links between each declared class in the sou
 
 ## Getting started
 
+0. Verify the requirements to execute the Jupyter Notebook
 ```bash
 python3 --version
 pip3 -V
 pip3 install -r requirements.txt
+```
+
+1. Convert the Jupyter Notebook file (`.ipynb` extension) into a Python script file (`.py`)
+```bash
+jupyter nbconvert --to script main.ipynb --output out/main.py
 ```
 
 ## References
