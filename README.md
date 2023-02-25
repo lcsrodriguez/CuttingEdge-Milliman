@@ -7,6 +7,7 @@
 1. Implementation of path simulators for:
     - Interest rates models: Vasicek, Cox-Ingersoll-Ross (CIR), Hull & White
     - Equity-index models: Black-Scholes with stochastic rates
+    - Use of Euler-Maruyama and Milstein numerical methods to solve SDEs dynamics
 2. Analysis via derivatives pricing 
 
 
@@ -59,7 +60,7 @@ cd out/
 
 4. *(Optional)* Convert the Jupyter Notebook file (`.ipynb` extension) into a Python script file (`.py`)
 ```bash
-jupyter nbconvert --to script main.ipynb --output out/main.py
+jupyter nbconvert --to script main.ipynb --output out/main
 cat out/main.py
 ```
 
