@@ -71,6 +71,13 @@ jupyter nbconvert --to script main.ipynb --output out/main
 cat out/main.py
 ```
 
+3. Perform the needed updates in the code
+
+4. Run the following command to release the last version of the documentation 
+```bash
+mdkocs build
+```
+
 ## References
 
 1. Ioane MUNI-TOKE, *Modèles stochastiques de taux d’intérêts*, 2011
