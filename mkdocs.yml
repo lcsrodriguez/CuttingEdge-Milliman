@@ -39,6 +39,7 @@ plugins:
 
 markdown_extensions:
   - admonition
+  - footnotes
   - pymdownx.details
   - pymdownx.superfences:
       custom_fences:

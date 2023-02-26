@@ -12,10 +12,15 @@ Its purpose is to report on the level of risk embedded in the products in the in
 Trajectories of updated equity indices are simulated using models calibrated on market prices. The joint law of the interest rate / equity index couple therefore has an impact on the quantile finally calculated. It is proposed in this subject to implement simulation schemes of some rate and equity models and to study the joint law of the rate / equity couple by simulation. Sensitivities will be carried out. A study of the impact of the parameters (models, discretization, etc.) on the quantile levels will be carried out.
 
 
-A generic plan:
-1. Interest-rates modelling
-2. Equity-index modelling
-3. In-depth analysis of simulation results
+A generic plan of our research project:
+
+1. **Interest-rates** modelling $(r_t)_{t\in\mathbb{R}^+}$
+    - Vasicek, CIR, Hull & White, Black-Karasinski, Ho-Lee[^1]
+2. **Equity-index** modelling $(S_t)_{t\in\mathbb{R}^+}$
+    - Black-Scholes with stochastic interest rates
+3. **In-depth analysis** of simulation results
+    - Pricing of vanilla European derivatives
+    - Analysis of the distribution of $S_T$ for $T > 0$
 
 <p style="color:#009485"><i>To start with this project, please follows the procedure detailed <a style="color:#009485; text-decoration: underline" href="/getting-started">here</a></i>.</p>
 
@@ -33,3 +38,5 @@ If you have discovered any technical issue within the source code, or you want t
 ## License
 
 See the [LICENSE](../LICENSE) file for more information.
+
+[^1]: Some other models can also be implemented as an extension of this current work
