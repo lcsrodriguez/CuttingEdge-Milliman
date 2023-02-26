@@ -4,9 +4,9 @@ theme:
   palette:
     # Palette toggle for light mode
     - scheme: default
+      primary: teal
       toggle:
         icon: material/toggle-switch
-
         name: Switch to dark mode
 
     # Palette toggle for dark mode
@@ -54,5 +54,7 @@ extra_javascript:
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 nav:
   - Home: index.md
+  - Getting started: getting-started.md
   - Architecture: tree.md
   - Reference: reference.md
+  - Bibliography: bib.md
