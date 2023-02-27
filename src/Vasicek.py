@@ -8,8 +8,13 @@ class Vasicek(RatesModel):
     MODEL_NAME = "VASICEK"
     
     def __init__(self, r0: float, kappa: float, theta: float, eta: float) -> None:
-        """
-        Default constructor in order to verify the validity of the parameters, and store them
+        r"""Default constructor in order to verify the validity of the parameters, and store them
+
+        Args:
+            r0 (float): Initial value of the process $(r_t)_t$ at time $t = 0$
+            kappa (float): Mean-reversion speed parameter
+            theta (float): Mean-reversion center parameter
+            eta (float): Volatility (constant) parameter
         """
         # Verification
         assert r0 > 0 and kappa > 0 and theta > 0 and eta > 0
@@ -21,28 +26,43 @@ class Vasicek(RatesModel):
         self.eta = eta
         
     def __repr__(self) -> str:
-        """
-        Hard string representation
+        r"""Hard string representation
+
+        Returns:
+            str: Output string
         """
         return f"Vasicek model {self.get_parameter_string(onLaTeX=False)})"
     
     def __str__(self) -> str:
-        """
+        r"""
         Gentle string representation
+
+        Returns:
+            str: Output string
         """
         return f"Vasicek model {self.get_parameter_string(onLaTeX=False)}"
   
     def get_parameter_string(self, onLaTeX: bool = True) -> str:
-        """
-        Function returning a user-friendly string displaying the model parameters values
-        """
+        r""" Function returning a user-friendly string displaying the model parameters values
+
+        Args:
+            onLaTeX (bool, optional): Boolean value indicating if $\LaTeX$ formatting is enabled. Defaults to True.
+
+        Returns:
+            str: Output string of each parameter's value
+        """ 
         if onLaTeX:
             return f"($r_0$ = {self.r0}, $\kappa$ = {self.kappa}, $\\theta$ = {self.theta}, $\eta$ = {self.eta})"
         return f"(r0 = {self.r0}, kappa = {self.kappa}, theta = {self.theta}, eta = {self.eta})"
 
     def simulate_path(self, scheme: Constants.Scheme = Constants.Scheme.EULER, **kwargs) -> dict:
-        """
-        Function wrapping the 2 available simulators to simulate 1 path
+        """Function wrapping the 2 available simulators to simulate 1 path
+
+        Args:
+            scheme (Constants.Scheme, optional): Numerical scheme to be used. Defaults to Constants.Scheme.EULER.
+
+        Returns:
+            dict: Hashmap of results with keys `t` for time interval and `r` for rates simulation results
         """
         if scheme == Constants.Scheme.EULER:
             return self.simulate_euler(**kwargs)

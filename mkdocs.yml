@@ -44,11 +44,10 @@ plugins:
   - literate-nav:
       nav_file: summary.md
   - mkdocstrings
-  #- section-index
+  - section-index
 
 markdown_extensions:
   - admonition
-
   - footnotes
   - pymdownx.details
   - pymdownx.superfences:
@@ -71,7 +70,7 @@ nav:
   - Home: index.md
   - Getting started: getting-started.md
   - Architecture: architecture.md
-  - test: reference/summary.md
+  - Reference: reference/summary.md
   - Bibliography: bibliography.md
 #   - References:
 # - Summary: reference/summary.md
