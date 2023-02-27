@@ -6,13 +6,14 @@ theme:
     - scheme: default
       primary: teal
       toggle:
-        icon: material/toggle-switch
+        icon: material/weather-sunny
         name: Switch to dark mode
 
     # Palette toggle for dark mode
     - scheme: slate
+      primary: black
       toggle:
-        icon: material/toggle-switch-off-outline
+        icon: material/weather-night
         name: Switch to light mode
   icon:
     repo: fontawesome/brands/github
