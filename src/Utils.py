@@ -23,4 +23,6 @@ class Utils:
     """
     Static class for utils functions
     """
-    pass
+    
+    # Function to explicitly cast a dictionary or Numpy array into a pandas DataFrame
+    cast_df = lambda x: pd.DataFrame(x)
