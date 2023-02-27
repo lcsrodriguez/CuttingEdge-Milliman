@@ -22,10 +22,10 @@ The dependency tree below shows the links between each declared class in the sou
   graph TD;
       Model --> RatesModel
       Model --> EquityModel
-      RatesModel --> VasicekModel
-      RatesModel --> CIRModel
-      RatesModel --> HullWhiteModel
-      EquityModel --> BlackScholesModel
+      RatesModel --> Vasicek
+      RatesModel --> CIR
+      RatesModel --> HullWhite
+      EquityModel --> BlackScholes
       Constants --> Utils
 ```
 

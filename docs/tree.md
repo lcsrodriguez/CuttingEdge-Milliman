@@ -7,10 +7,10 @@
   graph TD;
       Model --> RatesModel
       Model --> EquityModel
-      RatesModel --> VasicekModel
-      RatesModel --> CIRModel
-      RatesModel --> HullWhiteModel
-      EquityModel --> BlackScholesModel
+      RatesModel --> Vasicek
+      RatesModel --> CIR
+      RatesModel --> HullWhite
+      EquityModel --> BlackScholes
       Constants --> Utils
 ```
 
