@@ -6,16 +6,18 @@ nav = mkdocs_gen_files.Nav()
 
 for path in sorted(Path("src").rglob("*.py")):  # 
     module_path = path.relative_to("src").with_suffix("")  # 
-    print(module_path)
+    #print(module_path)
     doc_path = path.relative_to("src").with_suffix(".md")  # 
-    print(doc_path)
+    #print(doc_path)
     full_doc_path = Path("reference", doc_path)  # 
-    print(full_doc_path)
+    #print(full_doc_path)
     parts = list(module_path.parts)
-    print(parts)
-    print("-----")
+    #print(parts)
+    #print("-----")
     if parts[-1] == "__init__":  # 
         parts = parts[:-1]
+        doc_path = doc_path.with_name("index.md")
+        full_doc_path = full_doc_path.with_name("index.md")
     elif parts[-1] == "__main__":
         continue
 

@@ -33,7 +33,7 @@ cd out/
 
 1. Install these additional requirements
 ```bash
-pip3 install mkdocs "mkdocstrings[python]" mkdocs-material mkdocs-literate-nav mkdocs-gen-files
+pip3 install mkdocs "mkdocstrings[python]" mkdocs-material mkdocs-literate-nav mkdocs-gen-files mkdocs-section-index
 ```
 
 2. Convert the Jupyter Notebook file (`.ipynb` extension) into a Python script file (`.py`)
@@ -52,6 +52,18 @@ mdkocs build
 !!! note "Remark"
     Check if all the requirements for the documentation generation are satisfied by running:
     `pip3 freeze | grep mkdocs` 
+
+
+    ```
+    mkdocs==1.3.1
+    mkdocs-autorefs==0.4.1
+    mkdocs-gen-files==0.4.0
+    mkdocs-literate-nav==0.6.0
+    mkdocs-material==8.5.2
+    mkdocs-material-extensions==1.0.3
+    mkdocstrings==0.20.0
+    mkdocstrings-python==0.8.3
+    ```
 
 !!! danger "Warning"
     One can retrive the built version of the documentation in `site/` which is programmed to never be pushed onto the online Git repo.
