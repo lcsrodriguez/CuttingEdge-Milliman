@@ -49,5 +49,9 @@ cat out/main.py
 mdkocs build
 ```
 
+!!! note "Remark"
+    Check if all the requirements for the documentation generation are satisfied by running:
+    `pip3 freeze | grep mkdocs` 
+
 !!! danger "Warning"
     One can retrive the built version of the documentation in `site/` which is programmed to never be pushed onto the online Git repo.

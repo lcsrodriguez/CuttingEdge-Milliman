@@ -61,12 +61,13 @@ extra_javascript:
   - javascripts/mathjax.js
   - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
 nav:
   - Home: index.md
   - Getting started: getting-started.md
-  - Architecture: tree.md
-  - Bibliography: bib.md
+  - Architecture: architecture.md
   - References:
+      - Summary: reference/summary.md
       - BlackScholes: reference/BlackScholes.md
       - CIR: reference/CIR.md
       - Constants: reference/Constants.md
@@ -76,3 +77,4 @@ nav:
       - RM: reference/RatesModel.md
       - U: reference/Utils.md
       - v: reference/Vasicek.md
+  - Bibliography: bibliography.md

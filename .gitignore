@@ -3,5 +3,6 @@ site/*
 *.py
 !src/*.py
 .idea/
+!docs/*.py
 .ipynb_checkpoints/
 */__pycache__/
