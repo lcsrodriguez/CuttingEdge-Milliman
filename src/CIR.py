@@ -3,12 +3,13 @@ from .Utils import *
 from .Constants import *
 
 class CIR(RatesModel):
-    """ Class representing the Cox-Ingersoll-Ross (CIR) model """
+    r""" Class representing the Cox-Ingersoll-Ross (CIR) model """
     
+    # Name of the model
     MODEL_NAME = "CIR"
     
     def __init__(self, r0: float, kappa: float, theta: float, sigma: float) -> None:
-        """
+        r"""
         Default constructor in order to verify the validity of the parameters, and store them
         """
         # Verification
@@ -26,19 +27,19 @@ class CIR(RatesModel):
         self.sigma = sigma
         
     def __repr__(self) -> str:
-        """
+        r"""
         Hard string representation
         """
         return f"CIR model {self.get_parameter_string(onLaTeX=False)})"
     
     def __str__(self) -> str:
-        """
+        r"""
         Gentle string representation
         """
         return f"CIR model {self.get_parameter_string(onLaTeX=False)}"
   
     def get_parameter_string(self, onLaTeX: bool = True) -> str:
-        """
+        r"""
         Function returning a user-friendly string displaying the model parameters values
         """
         if onLaTeX:
@@ -46,7 +47,7 @@ class CIR(RatesModel):
         return f"(r0 = {self.r0}, kappa = {self.kappa}, theta = {self.theta}, sigma = {self.sigma})"
     
     def simulate_path(self, scheme: Constants.Scheme = Constants.Scheme.EULER, **kwargs) -> dict:
-        """
+        r"""
         Function wrapping the 2 available simulators to simulate 1 path
         """
         if scheme == Constants.Scheme.EULER:
@@ -54,7 +55,7 @@ class CIR(RatesModel):
         return self.simulate_milstein(**kwargs)
     
     def simulate_paths(self, M: int = 3, scheme: Constants.Scheme = Constants.Scheme.EULER, **kwargs) -> dict:
-        """
+        r"""
         Function wrapping the 2 available simulators to simulate several paths
         """
         assert M >= 1 and type(M) == int
@@ -76,7 +77,7 @@ class CIR(RatesModel):
     def simulate_euler(self,
                        T: float = 1.0,
                        N: int = Constants.MAX_STEPS) -> dict:
-        """
+        r"""
         Function implementing a path simulator following CIR model dynamics
         using the Euler-Maruyama method
         Returns a dictionary (hashmap) with the time and generated rates columns
@@ -104,13 +105,14 @@ class CIR(RatesModel):
     def simulate_milstein(self,
                           T: float = 1.0,
                           N: int = Constants.MAX_STEPS) -> dict:
-        """
+        r"""
         Function implementing a path simulator following CIR model dynamics
         using the Milstein method
         Returns a dictionary (hashmap) with the time and generated rates columns
+        !!! danger "Warning"
+            Since $b'(.) \neq 0$, the Milstein scheme is not equivalent to the Euler scheme and a complete implementation is required !
+        
         """
-        # Since b'(.) <> 0, the Milstein scheme is not equivalent to the Euler scheme
-        # and a complete implementation is required !
         
         # Time step
         dT = T/float(N)
@@ -135,7 +137,7 @@ class CIR(RatesModel):
         return {"t": H, "r":r}
         
     def plot_feller_line(self, **kwards) -> None:
-        """
+        r"""
         Function printing the Feller line to highlight the positivity of simulated rates
         """
         if self.feller_condition:

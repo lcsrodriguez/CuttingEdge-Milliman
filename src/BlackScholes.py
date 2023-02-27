@@ -4,12 +4,13 @@ from .Utils import *
 from .Constants import *
 
 class BlackScholes(EquityModel):
-    """ Class representing the Black & Scholes model """
+    r""" Class representing the Black & Scholes model """
     
+    # Name of the model
     MODEL_NAME = "BLACK-SCHOLES"
     
     def __init__(self, S0: float, r: RatesModel, sigma: float, rho: float) -> None:
-        """
+        r"""
         Default constructor in order to verify the validity of the parameters, and store them
         """
         # Verification of parameters
@@ -27,19 +28,19 @@ class BlackScholes(EquityModel):
         self.rho = rho
         
     def __repr__(self) -> str:
-        """
+        r"""
         Hard string representation
         """
         return f"Black-Scholes model {self.get_parameter_string(onLaTeX=False)}"
     
     def __str__(self) -> str:
-        """
+        r"""
         Gentle string representation
         """
         return f"Black-Scholes model {self.get_parameter_string(onLaTeX=False)}"
   
     def get_parameter_string(self, onLaTeX: bool = True) -> str:
-        """
+        r"""
         Function returning a user-friendly string displaying the model parameters values
         """
         if onLaTeX:
@@ -47,7 +48,7 @@ class BlackScholes(EquityModel):
         return f"(S0 = {self.S0}, sigma = {self.sigma})"
     
     def simulate_path(self, scheme: Constants.Scheme = Constants.Scheme.EULER, **kwargs) -> dict:
-        """
+        r"""
         Function wrapping the 2 available simulators to simulate 1 path
         """
         if scheme == Constants.Scheme.EULER:
@@ -55,7 +56,7 @@ class BlackScholes(EquityModel):
         return self.simulate_milstein(**kwargs)
     
     def simulate_paths(self, M: int = 3, scheme: Constants.Scheme = Constants.Scheme.EULER, **kwargs) -> dict:
-        """
+        r"""
         Function wrapping the 2 available simulators to simulate several paths
         """
         assert M >= 1 and type(M) == int
@@ -77,7 +78,7 @@ class BlackScholes(EquityModel):
     def simulate_euler(self,
                        T: float = 1.0,
                        N: int = Constants.MAX_STEPS) -> dict:
-        """
+        r"""
         Function implementing a path simulator following Black-Scholes model dynamics
         using the Euler-Maruyama method
         Returns a dictionary (hashmap) with the time and generated asset price columns
@@ -87,7 +88,7 @@ class BlackScholes(EquityModel):
     def simulate_milstein(self,
                           T: float = 1.0,
                           N: int = Constants.MAX_STEPS) -> dict:
-        """
+        r"""
         Function implementing a path simulator following Black-Scholes model dynamics
         using the Milstein method
         Returns a dictionary (hashmap) with the time and generated asset price columns

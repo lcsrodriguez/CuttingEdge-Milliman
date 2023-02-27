@@ -42,12 +42,13 @@ plugins:
       scripts:
         - docs/gen_ref_pages.py
   - literate-nav:
-      nav_file: SUMMARY.md
+      nav_file: summary.md
   - mkdocstrings
   #- section-index
 
 markdown_extensions:
   - admonition
+
   - footnotes
   - pymdownx.details
   - pymdownx.superfences:
@@ -70,15 +71,17 @@ nav:
   - Home: index.md
   - Getting started: getting-started.md
   - Architecture: architecture.md
-  - References:
-      - Summary: reference/summary.md
-      - BlackScholes: reference/BlackScholes.md
-      - CIR: reference/CIR.md
-      - Constants: reference/Constants.md
-      - EM: reference/EquityModel.md
-      - hw: reference/HullWhite.md
-      - M: reference/Model.md
-      - RM: reference/RatesModel.md
-      - U: reference/Utils.md
-      - v: reference/Vasicek.md
+  - test: reference/summary.md
   - Bibliography: bibliography.md
+#   - References:
+# - Summary: reference/summary.md
+# - BlackScholes: reference/BlackScholes.md
+# - CIR: reference/CIR.md
+# - Constants: reference/Constants.md
+# - EM: reference/EquityModel.md
+# - hw: reference/HullWhite.md
+# - M: reference/Model.md
+# - RM: reference/RatesModel.md
+# - U: reference/Utils.md
+# - v: reference/Vasicek.md
+

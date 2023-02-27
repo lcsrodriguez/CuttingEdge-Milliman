@@ -20,21 +20,37 @@ npr.seed(1)
 
 
 class Utils:
-    """
+    r"""
     Static class for utils functions
     """
     
-    # Function to explicitly cast a dictionary or Numpy array into a pandas DataFrame
-    cast_df = lambda x: pd.DataFrame(x)
+    @staticmethod
+    def cast_df(x: dict | list | np.ndarray | pd.Series) -> pd.DataFrame:
+        r"""Function to explicitly cast a dictionary or Numpy array into a **pandas** `DataFrame`
+
+        Args:
+            x (dict | list | np.ndarray | pd.Series): Input data variable
+
+        Returns:
+            pd.DataFrame: Output Pandas `DataFrame`
+        """
+        return pd.DataFrame(x)
 
     @staticmethod
     def generate_correlated_gaussians(rho: float = 0.5,
                                   T: float = 1.0,
                                   N: int = Constants.MAX_STEPS) -> np.ndarray:
-        """
-        Function which generates a series of two Gaussian series correlated by the given
-        factor $\rho$
-        """
+        r"""Function which generates a series of two Gaussian series correlated by the given
+        factor $\rho \in \left]-1, 1\right[$
+
+        Args:
+            rho (float, optional): Correlation ratio given by the user. Defaults to 0.5.
+            T (float, optional): Time horizon (upper bound of the time interval). Defaults to 1.0.
+            N (int, optional): Number of step in the time mesh. Defaults to Constants.MAX_STEPS.
+
+        Returns:
+            np.ndarray: 2 numpy arrays which corresponds to *Brownian increments* ($(dB_t)_t$ and $(dW_t)_t$)
+        """            
         # Checking the value of rho
         assert rho < 1.0 and rho > -1.0
         
@@ -63,9 +79,12 @@ class Utils:
     
     @staticmethod
     def generate_correlated_brownians(*args, **kwargs) -> np.ndarray:
+        r"""Function which generates a series of two Brownian motions correlated by the given
+        factor $\rho \in \left]-1, 1\right[$
+
+        Returns:
+            np.ndarray: 2 numpy arrays which corresponds to *Brownian increments* ($(dB_t)_t$ and $(dW_t)_t$)
         """
-        Function which generates a series of two Brownian motions correlated by the given
-        factor $\rho$
-        """
+        # Computing the Gaussian increments
         CX = Utils.generate_correlated_gaussians(*args, **kwargs)
         return [path.cumsum() for path in CX]

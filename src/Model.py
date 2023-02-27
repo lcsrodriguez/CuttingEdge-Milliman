@@ -1,3 +1,3 @@
 class Model:
-    """ Abstract class for models """
+    r""" Abstract class for models """
     pass
