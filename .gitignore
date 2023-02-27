@@ -4,3 +4,4 @@ site/*
 !src/*.py
 .idea/
 .ipynb_checkpoints/
+*/__pycache__/
