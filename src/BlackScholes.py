@@ -3,7 +3,7 @@ from .RatesModel import *
 from .Utils import *
 from .Constants import *
 
-class BlackScholesModel(EquityModel):
+class BlackScholes(EquityModel):
     """ Class representing the Black & Scholes model """
     
     MODEL_NAME = "BLACK-SCHOLES"

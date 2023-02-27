@@ -2,7 +2,7 @@ from .RatesModel import *
 from .Utils import *
 from .Constants import *
 
-class CIRModel(RatesModel):
+class CIR(RatesModel):
     """ Class representing the Cox-Ingersoll-Ross (CIR) model """
     
     MODEL_NAME = "CIR"

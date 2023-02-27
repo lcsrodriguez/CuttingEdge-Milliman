@@ -2,7 +2,7 @@ from .RatesModel import *
 from .Utils import *
 from .Constants import *
 
-class HullWhiteModel(RatesModel):
+class HullWhite(RatesModel):
     """ Class representing the Hull & White model """
     
     MODEL_NAME = "HULL-WHITE"

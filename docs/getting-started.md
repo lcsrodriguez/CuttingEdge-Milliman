@@ -33,7 +33,7 @@ cd out/
 
 1. Install these additional requirements
 ```bash
-pip3 install mkdocs "mkdocstrings[python]" mkdocs-material
+pip3 install mkdocs "mkdocstrings[python]" mkdocs-material mkdocs-literate-nav mkdocs-gen-files
 ```
 
 2. Convert the Jupyter Notebook file (`.ipynb` extension) into a Python script file (`.py`)

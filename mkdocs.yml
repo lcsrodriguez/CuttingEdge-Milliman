@@ -37,8 +37,13 @@ site_description: Official documentation of Cutting-Edge project
 site_author: Amal BACHA - Dalia BARBI - Khalil BATTIKH - Lucas RODRIGUEZ - Naïm SOUNI
 copyright: Copyright &copy; 2023 Amal BACHA - Dalia BARBI - Khalil BATTIKH - Lucas RODRIGUEZ - Naïm SOUNI<br>Academic work &bull; <i>January 2023 - Present</i>
 plugins:
-  - mkdocstrings
   - search
+  - gen-files:
+      scripts:
+        - docs/gen_ref_pages.py
+  - literate-nav:
+      nav_file: SUMMARY.md
+  - mkdocstrings
 
 markdown_extensions:
   - admonition
@@ -60,5 +65,14 @@ nav:
   - Home: index.md
   - Getting started: getting-started.md
   - Architecture: tree.md
-  - Reference: reference.md
   - Bibliography: bib.md
+  - References:
+      - BlackScholes: reference/BlackScholes.md
+      - CIR: reference/CIR.md
+      - Constants: reference/Constants.md
+      - EM: reference/EquityModel.md
+      - hw: reference/HullWhite.md
+      - M: reference/Model.md
+      - RM: reference/RatesModel.md
+      - U: reference/Utils.md
+      - v: reference/Vasicek.md

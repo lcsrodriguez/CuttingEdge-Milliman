@@ -2,7 +2,7 @@ from .RatesModel import *
 from .Utils import *
 from .Constants import *
 
-class VasicekModel(RatesModel):
+class Vasicek(RatesModel):
     """ Class representing the Vasicek model """
     
     MODEL_NAME = "VASICEK"
