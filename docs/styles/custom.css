@@ -1,3 +1,16 @@
 /*ul[data-md-component="toc"] .md-nav__link[href^="#src."] {
     color: red;
 }*/
+
+.doc-label-staticmethod code {
+    background-color: red;
+    color: white;
+}
+
+.doc-function h3.doc-heading code.highlight {
+    background-color: yellow;
+}
+
+.doc-function h3.doc-heading {
+    border-bottom: 2px solid black;
+}

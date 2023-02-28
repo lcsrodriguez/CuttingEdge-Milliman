@@ -15,6 +15,7 @@ class Vasicek(RatesModel):
     $$
     """
     
+    # Name of the model
     MODEL_NAME = "VASICEK"
     
     def __init__(self, r0: float, kappa: float, theta: float, eta: float) -> None:
