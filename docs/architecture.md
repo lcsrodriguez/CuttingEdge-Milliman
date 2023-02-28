@@ -18,6 +18,9 @@
 !!! note "Remark"
     `Model`, `RatesModel` and `EquityModel` are *abstract* classes and do not contain any implemented methods.
 
+## UML graph
+
+*TODO*
 
 ## File tree
 
