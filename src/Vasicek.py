@@ -3,7 +3,17 @@ from .Utils import *
 from .Constants import *
 
 class Vasicek(RatesModel):
-    """ Class representing the Vasicek model """
+    r"""Class representing the Vasicek model 
+    
+    $$
+        \left\{
+        \begin{aligned}
+            \mathrm{d}r_t &= \kappa(\theta - r_t)\mathrm{d}t + \eta \mathrm{d}B_t \\
+            r(0) &= r_0
+        \end{aligned}
+        \right.
+    $$
+    """
     
     MODEL_NAME = "VASICEK"
     
@@ -11,10 +21,10 @@ class Vasicek(RatesModel):
         r"""Default constructor in order to verify the validity of the parameters, and store them
 
         Args:
-            r0 (float): Initial value of the process $(r_t)_t$ at time $t = 0$
-            kappa (float): Mean-reversion speed parameter
-            theta (float): Mean-reversion center parameter
-            eta (float): Volatility (constant) parameter
+            r0 (float): Initial value $r_0$ of the process $(r_t)_t$ at time $t = 0$
+            kappa (float): Mean-reversion speed parameter $\kappa$s
+            theta (float): Mean-reversion center parameter $\theta$
+            eta (float): Volatility (constant) parameter $\eta$
         """
         # Verification
         assert r0 > 0 and kappa > 0 and theta > 0 and eta > 0
@@ -56,7 +66,7 @@ class Vasicek(RatesModel):
         return f"(r0 = {self.r0}, kappa = {self.kappa}, theta = {self.theta}, eta = {self.eta})"
 
     def simulate_path(self, scheme: Constants.Scheme = Constants.Scheme.EULER, **kwargs) -> dict:
-        """Function wrapping the 2 available simulators to simulate 1 path
+        r"""Function wrapping the 2 available simulators to simulate 1 path
 
         Args:
             scheme (Constants.Scheme, optional): Numerical scheme to be used. Defaults to Constants.Scheme.EULER.
@@ -69,9 +79,15 @@ class Vasicek(RatesModel):
         return self.simulate_milstein(**kwargs)
     
     def simulate_paths(self, M: int = 3, scheme: Constants.Scheme = Constants.Scheme.EULER, **kwargs) -> dict:
-        """
-        Function wrapping the 2 available simulators to simulate several paths
-        """
+        r"""Function wrapping the 2 available simulators to simulate **several** paths
+
+        Args:
+            M (int, optional): Number of trajectories to be applied. Defaults to 3.
+            scheme (Constants.Scheme, optional): Numerical scheme to be applied. Defaults to Constants.Scheme.EULER.
+
+        Returns:
+            dict: Hashmap of results with keys `t` for time interval and `r`$\star$ for rates simulation results where $\star$ stand for the id of the simulations
+        """        
         assert M >= 1 and type(M) == int
         
         res = []
@@ -91,11 +107,15 @@ class Vasicek(RatesModel):
     def simulate_euler(self,
                        T: float = 1.0,
                        N: int = Constants.MAX_STEPS) -> dict:
-        """
-        Function implementing a path simulator following Vasicek model dynamics
-        using the Euler-Maruyama method
-        Returns a dictionary (hashmap) with the time and generated rates columns
-        """
+        r"""Function implementing a path simulator following Vasicek model dynamics using the Euler-Maruyama method
+
+        Args:
+            T (float, optional): Time horizon. Defaults to 1.0.
+            N (int, optional): Number of time step in the mesh. Defaults to Constants.MAX_STEPS.
+
+        Returns:
+            dict: Dictionary (hashmap) with the time and generated rates columns
+        """        
         # Time step
         dT = T/float(N)
 
@@ -117,10 +137,18 @@ class Vasicek(RatesModel):
     def simulate_milstein(self,
                           T: float = 1.0,
                           N: int = Constants.MAX_STEPS) -> dict:
-        """
-        Function implementing a path simulator following Vasicek model dynamics
-        using the Milstein method
-        Returns a dictionary (hashmap) with the time and generated rates columns
-        """
+        r"""Function implementing a path simulator following Vasicek model dynamics using the Milstein method
+
+        Args:
+            T (float, optional): Time horizon. Defaults to 1.0.
+            N (int, optional): Number of time step in the mesh. Defaults to Constants.MAX_STEPS.
+
+        Returns:
+            dict: Dictionary (hashmap) with the time and generated rates columns
+
+
+        !!! note
+            Since $b'(.) = 0$, the Milstein scheme is equivalent to the Euler scheme
+        """   
         # Since b'(.) = 0, the Milstein scheme is equivalent to the Euler scheme
         return self.simulate_euler(T, N)
