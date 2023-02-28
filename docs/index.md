@@ -28,13 +28,14 @@ A generic plan of our research project:
 
 ## About
 
-This academic project has been conducted in association with [Milliman]() and [University of Paris-Saclay]().
+This academic project has been conducted in association with [Milliman](https://milliman.com/) and [University of Paris-Saclay](https://www.universite-paris-saclay.fr/).
 
-Our research group is composed of Amal BACHA, Dalia BARBI, Khalil BATTIKH, Lucas RODRIGUEZ and Naïm SOUNI, engineering student in the [M2 Quantitative Finance]() of [University of Paris-Saclay]().
+Our research group is composed of **Amal BACHA**, **Dalia BARBI**, **Khalil BATTIKH**, **Lucas RODRIGUEZ** and **Naïm SOUNI**, engineering student in the [M2 Quantitative Finance](https://www.universite-paris-saclay.fr/formation/master/mathematiques-et-applications/m2-finance-quantitative) of [University of Paris-Saclay](https://www.universite-paris-saclay.fr/).
+
 
 ## Bug tracker & Contribution
 
-If you have discovered any technical issue within the source code, or you want to propose new features, feel free to open a [new issue]() or initiate a [PR](). We thank you for your interest in this project.
+If you have discovered any technical issue within the source code, or you want to propose new features, feel free to open a [new issue](https://github.com/lcsrodriguez/CuttingEdge-Milliman/issues/new) or initiate a [PR](https://github.com/lcsrodriguez/CuttingEdge-Milliman/pulls). We thank you for your interest in this project.
 
 
 ## License

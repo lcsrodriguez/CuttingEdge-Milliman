@@ -6,3 +6,4 @@ site/*
 !docs/*.py
 .ipynb_checkpoints/
 */__pycache__/
+out.txt

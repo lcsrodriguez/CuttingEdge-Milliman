@@ -49,6 +49,7 @@ plugins:
 
 markdown_extensions:
   - admonition
+  - tables
   - footnotes
   - pymdownx.details
   - pymdownx.superfences:
@@ -73,6 +74,8 @@ nav:
   - Architecture: architecture.md
   - Code Reference: reference/summary.md
   - Bibliography: bibliography.md
+  - Documents: documents.md
+  - History: git.md
 #   - References:
 # - Summary: reference/summary.md
 # - BlackScholes: reference/BlackScholes.md
@@ -84,4 +87,3 @@ nav:
 # - RM: reference/RatesModel.md
 # - U: reference/Utils.md
 # - v: reference/Vasicek.md
-
