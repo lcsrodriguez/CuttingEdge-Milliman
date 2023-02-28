@@ -40,6 +40,6 @@ If you have discovered any technical issue within the source code, or you want t
 
 ## License
 
-See the [LICENSE](../LICENSE) file for more information.
+See the [LICENSE](https://github.com/lcsrodriguez/CuttingEdge-Milliman/blob/main/LICENSE) file for more information.
 
 [^1]: Some other models can also be implemented as an extension of this current work
