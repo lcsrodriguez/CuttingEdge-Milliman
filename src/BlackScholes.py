@@ -12,20 +12,21 @@ class BlackScholes(EquityModel):
     # Name of the model
     MODEL_NAME = "BLACK-SCHOLES"
     
-    def __init__(self, S0: float, r: RatesModel, sigma: float) -> None:
+    def __init__(self, S0: float, r: RatesModel, sigma: float, rho: float = 0.99) -> None:
         r"""Default constructor in order to verify the validity of the parameters, and store them
 
         Args:
             S0 (float): Initial value $S_0$ of the process $(S_t)_t$ at time $t = 0$
             r (RatesModel): Rate model to be used (corresponding to the $(r_t)_t$ process)
             sigma (float): Volatility (constant) parameter $\sigma \in \mathbb{R}^+$
+            rho (float): Correlation coefficient $\rho$ for the generation of the two Brownian motion.
 
         Raises:
             Exception: Exception raided if wrong rate model
         """
         # Verification of parameters
         assert S0 > 0 and sigma > 0
-        #assert rho <= 1 and rho >= -1 # Boundaries for Brownian motions
+        assert rho <= 1 and rho >= -1 # Boundaries for Brownian motions
         
         # Check if the rate model is a registered and valid model 
         if not issubclass(type(r), RatesModel): # type(r).__bases__[0] == RatesModel
@@ -33,9 +34,9 @@ class BlackScholes(EquityModel):
                 
         # Storing variables
         self.S0 = S0
-        self.r = r
+        self.r: RatesModel = r
         self.sigma = sigma
-        #self.rho = rho
+        self.rho = rho
         
     def __repr__(self) -> str:
         r"""Hard string representation
@@ -118,7 +119,26 @@ class BlackScholes(EquityModel):
         Returns:
             dict: Dictionary (hashmap) with the time and generated rates columns
         """ 
-        pass
+        # Time step
+        dT = T/float(N)
+
+        # Generating the time horizon array
+        H = np.arange(0, T, dT)
+
+        # Generating the dW array
+        dB, dW = Utils.generate_correlated_gaussians(rho=self.rho)
+
+        # Initializing the rates array
+        S = np.zeros(N)
+        S[0] = self.S0
+        
+        # Simulating the interest rates according to the given model
+        simulated_rates = self.r.simulate_euler(T=T, N=N)
+        
+        # Computing the rates
+        for t in range(N - 1):
+            S[t + 1] = S[t] + (simulated_rates[t]*S[t])*dT + self.sigma*S[t]*dW[t]
+        return {"t": H, "S": S}
         
     def simulate_milstein(self,
                           T: float = 1.0,
@@ -135,4 +155,23 @@ class BlackScholes(EquityModel):
         !!! danger "Warning"
             Since $b'(.) \neq 0$, the Milstein scheme is not equivalent to the Euler scheme and a complete implementation is required !
         """ 
-        pass
+        # Time step
+        dT = T/float(N)
+
+        # Generating the time horizon array
+        H = np.arange(0, T, dT)
+
+        # Generating the dW array
+        dB, dW = Utils.generate_correlated_gaussians(rho=self.rho)
+
+        # Initializing the rates array
+        S = np.zeros(N)
+        S[0] = self.S0
+        
+        # Simulating the interest rates according to the given model
+        simulated_rates = self.r.simulate_euler(T=T, N=N)
+        
+        # Computing the rates
+        for t in range(N - 1):
+            S[t + 1] = S[t] + (simulated_rates[t]*S[t])*dT + self.sigma*S[t]*dW[t] + (1/2)*(self.sigma**2)*S[t]*(dW[t]**2 - dT)
+        return {"t": H, "S": S}
