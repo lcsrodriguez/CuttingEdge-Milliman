@@ -1,5 +1,7 @@
 # Cutting-Edge project
 
+<img src="https://img.shields.io/static/v1?label=Range&message=Academic project&color=007bff"/>&nbsp;&nbsp;<img src="https://img.shields.io/static/v1?label=Languages&message=Python&color=ff0000"/>&nbsp;&nbsp;<img src="https://img.shields.io/static/v1?label=Restriction&message=YES&color=26c601"/>
+
 *Academic research project conducted between January and March 2023*
 
 ## Motivation
@@ -22,7 +24,7 @@ A generic plan of our research project:
     - Pricing of vanilla European derivatives
     - Analysis of the distribution of $S_T$ for $T > 0$
 
-<p style="color:#009485"><i>To start with this project, please follows the procedure detailed <a style="color:#009485; text-decoration: underline" href="/getting-started">here</a></i>.</p>
+<i>To start with this project, please follows the procedure detailed <a href="/getting-started">here</a></i>.
 
 ## About
 
