@@ -1,6 +1,7 @@
 from .RatesModel import *
 from .Utils import *
 from .Constants import *
+import numpy as np
 
 class CIR(RatesModel):
     r""" Class representing the Cox-Ingersoll-Ross (CIR) model
@@ -112,12 +113,14 @@ class CIR(RatesModel):
     
     def simulate_euler(self,
                        T: float = 1.0,
-                       N: int = Constants.MAX_STEPS) -> dict:
+                       N: int = Constants.MAX_STEPS,
+                       dB: np.ndarray = None) -> dict:
         r"""Function implementing a path simulator following CIR model dynamics using the Euler-Maruyama method
 
         Args:
             T (float, optional): Time horizon. Defaults to 1.0.
             N (int, optional): Number of time step in the mesh. Defaults to Constants.MAX_STEPS.
+            dB (np.ndarray, optional): Series of the Brownian increments. Defaults to None.
 
         Returns:
             dict: Dictionary (hashmap) with the time and generated rates columns
@@ -128,8 +131,9 @@ class CIR(RatesModel):
         # Generating the time horizon array
         H = np.arange(0, T, dT)
 
-        # Generating the dW array
-        dW = np.random.normal(0, 1, N)
+        # Generating the dB array
+        if dB is None:
+            dB = np.random.normal(0, 1, N)
 
         # Initializing the rates array
         r = np.zeros(N)
@@ -139,17 +143,19 @@ class CIR(RatesModel):
         for t in range(N - 1):
             #if r[t] <= 0:
             #    r[t] = np.abs(r[t])
-            r[t + 1] = r[t] + self.kappa*(self.theta - r[t])*dT + self.sigma*np.sqrt(np.abs(r[t]))*dW[t]
-        return {"t": H, "r":r}
+            r[t + 1] = r[t] + self.kappa*(self.theta - r[t])*dT + self.sigma*np.sqrt(np.abs(r[t]))*dB[t]
+        return {"t": H, "r": r}
         
     def simulate_milstein(self,
                           T: float = 1.0,
-                          N: int = Constants.MAX_STEPS) -> dict:
+                          N: int = Constants.MAX_STEPS,
+                          dB: np.ndarray = None) -> dict:
         r"""Function implementing a path simulator following CIR model dynamics using the Euler-Maruyama method
 
         Args:
             T (float, optional): Time horizon. Defaults to 1.0.
             N (int, optional): Number of time step in the mesh. Defaults to Constants.MAX_STEPS.
+            dB (np.ndarray, optional): Series of the Brownian increments. Defaults to None.
 
         Returns:
             dict: Dictionary (hashmap) with the time and generated rates columns
@@ -165,8 +171,9 @@ class CIR(RatesModel):
         # Generating the time horizon array
         H = np.arange(0, T, dT)
 
-        # Generating the dW array
-        dW = np.random.normal(0, 1, N)
+        # Generating the dB array
+        if dB is None:
+            dB = np.random.normal(0, 1, N)
 
         # Initializing the rates array
         r = np.zeros(N)
@@ -177,9 +184,9 @@ class CIR(RatesModel):
             #print(r[t])
             r[t + 1] = r[t] \
                      + self.kappa*(self.theta - r[t])*dT  \
-                     + self.sigma*np.sqrt(np.abs(r[t]))*dW[t] \
-                     + (1/2)*(dW[t]**2 - dT)*(self.sigma*np.sqrt(np.abs(r[t])))*(self.sigma)/(2*np.sqrt(np.abs(r[t])))
-        return {"t": H, "r":r}
+                     + self.sigma*np.sqrt(np.abs(r[t]))*dB[t] \
+                     + (1/2)*(dB[t]**2 - dT)*(self.sigma*np.sqrt(np.abs(r[t])))*(self.sigma)/(2*np.sqrt(np.abs(r[t])))
+        return {"t": H, "r": r}
         
     def plot_feller_line(self, **kwards) -> None:    
         r"""

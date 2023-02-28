@@ -37,6 +37,8 @@ class BlackScholes(EquityModel):
         self.r: RatesModel = r
         self.sigma = sigma
         self.rho = rho
+
+        self.LAST_SIMULATION = {}
         
     def __repr__(self) -> str:
         r"""Hard string representation
@@ -109,15 +111,17 @@ class BlackScholes(EquityModel):
     
     def simulate_euler(self,
                        T: float = 1.0,
-                       N: int = Constants.MAX_STEPS) -> dict:
+                       N: int = Constants.MAX_STEPS,
+                       getRates: bool = False) -> dict:
         r"""Function implementing a path simulator following Black-Scholes model dynamics using the Euler-Maruyama method
 
         Args:
             T (float, optional): Time horizon. Defaults to 1.0.
             N (int, optional): Number of time step in the mesh. Defaults to Constants.MAX_STEPS.
+            getRates (bool, optional): Add the corresponding simulated rates within the hashmap. Defaults to False.
 
         Returns:
-            dict: Dictionary (hashmap) with the time and generated rates columns
+            dict: Dictionary (hashmap) with the time and generated asset price columns
         """ 
         # Time step
         dT = T/float(N)
@@ -133,24 +137,31 @@ class BlackScholes(EquityModel):
         S[0] = self.S0
         
         # Simulating the interest rates according to the given model
-        simulated_rates = self.r.simulate_euler(T=T, N=N)
-        
+        simulated_rates = self.r.simulate_euler(T=T, N=N, dB=dB)
+        simulated_rates = simulated_rates["r"]
+
         # Computing the rates
         for t in range(N - 1):
             S[t + 1] = S[t] + (simulated_rates[t]*S[t])*dT + self.sigma*S[t]*dW[t]
+        
+        # Check for right output
+        if getRates:
+            return {"t": H, "S": S, "r": simulated_rates}
         return {"t": H, "S": S}
         
     def simulate_milstein(self,
                           T: float = 1.0,
-                          N: int = Constants.MAX_STEPS) -> dict:
+                          N: int = Constants.MAX_STEPS,
+                          getRates: bool = False) -> dict:
         r"""Function implementing a path simulator following Black-Scholes model dynamics using the Milstein method
 
         Args:
             T (float, optional): Time horizon. Defaults to 1.0.
             N (int, optional): Number of time step in the mesh. Defaults to Constants.MAX_STEPS.
+            getRates (bool, optional): Add the corresponding simulated rates within the hashmap. Defaults to False.
 
         Returns:
-            dict: Dictionary (hashmap) with the time and generated rates columns
+            dict: Dictionary (hashmap) with the time and generated asset price columns
 
         !!! danger "Warning"
             Since $b'(.) \neq 0$, the Milstein scheme is not equivalent to the Euler scheme and a complete implementation is required !
@@ -169,9 +180,14 @@ class BlackScholes(EquityModel):
         S[0] = self.S0
         
         # Simulating the interest rates according to the given model
-        simulated_rates = self.r.simulate_euler(T=T, N=N)
-        
+        simulated_rates = self.r.simulate_euler(T=T, N=N, dB=dB)
+        simulated_rates = simulated_rates["r"]
+
         # Computing the rates
         for t in range(N - 1):
             S[t + 1] = S[t] + (simulated_rates[t]*S[t])*dT + self.sigma*S[t]*dW[t] + (1/2)*(self.sigma**2)*S[t]*(dW[t]**2 - dT)
+        
+        # Check for right output
+        if getRates:
+            return {"t": H, "S": S, "r": simulated_rates}
         return {"t": H, "S": S}

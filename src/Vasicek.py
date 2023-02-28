@@ -1,6 +1,7 @@
 from .RatesModel import *
 from .Utils import *
 from .Constants import *
+import numpy as np
 
 class Vasicek(RatesModel):
     r"""Class representing the Vasicek model 
@@ -107,12 +108,14 @@ class Vasicek(RatesModel):
             
     def simulate_euler(self,
                        T: float = 1.0,
-                       N: int = Constants.MAX_STEPS) -> dict:
+                       N: int = Constants.MAX_STEPS,
+                       dB: np.ndarray = None) -> dict:
         r"""Function implementing a path simulator following Vasicek model dynamics using the Euler-Maruyama method
 
         Args:
             T (float, optional): Time horizon. Defaults to 1.0.
             N (int, optional): Number of time step in the mesh. Defaults to Constants.MAX_STEPS.
+            dB (np.ndarray, optional): Series of the Brownian increments. Defaults to None.
 
         Returns:
             dict: Dictionary (hashmap) with the time and generated rates columns
@@ -123,8 +126,9 @@ class Vasicek(RatesModel):
         # Generating the time horizon array
         H = np.arange(0, T, dT)
 
-        # Generating the dW array
-        dW = np.random.normal(0, 1, N)
+        # Generating the dB array
+        if dB is None:
+            dB = np.random.normal(0, 1, N)
 
         # Initializing the rates array
         r = np.zeros(N)
@@ -132,17 +136,19 @@ class Vasicek(RatesModel):
 
         # Computing the rates
         for t in range(N - 1):
-            r[t + 1] = r[t] + self.kappa*(self.theta - r[t])*dT + self.eta*dW[t]
+            r[t + 1] = r[t] + self.kappa*(self.theta - r[t])*dT + self.eta*dB[t]
         return {"t": H, "r":r}
         
     def simulate_milstein(self,
                           T: float = 1.0,
-                          N: int = Constants.MAX_STEPS) -> dict:
+                          N: int = Constants.MAX_STEPS,
+                          dB: np.ndarray = None) -> dict:
         r"""Function implementing a path simulator following Vasicek model dynamics using the Milstein method
 
         Args:
             T (float, optional): Time horizon. Defaults to 1.0.
             N (int, optional): Number of time step in the mesh. Defaults to Constants.MAX_STEPS.
+            dB (np.ndarray, optional): Series of the Brownian increments. Defaults to None.
 
         Returns:
             dict: Dictionary (hashmap) with the time and generated rates columns
@@ -152,4 +158,4 @@ class Vasicek(RatesModel):
             Since $b'(.) = 0$, the Milstein scheme is equivalent to the Euler scheme
         """   
         # Since b'(.) = 0, the Milstein scheme is equivalent to the Euler scheme
-        return self.simulate_euler(T, N)
+        return self.simulate_euler(T, N, dB=dB)
