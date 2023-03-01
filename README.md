@@ -27,6 +27,7 @@ The dependency tree below shows the links between each declared class in the sou
       RatesModel --> HullWhite
       EquityModel --> BlackScholes
       Constants --> Utils
+      Pricer
 ```
 
 **Remark**: `Model`, `RatesModel` and `EquityModel` are *abstract* classes and do not contain any implemented methods.

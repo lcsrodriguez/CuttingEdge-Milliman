@@ -12,6 +12,7 @@
       RatesModel --> HullWhite
       EquityModel --> BlackScholes
       Constants --> Utils
+      Pricer
 ```
 
 
