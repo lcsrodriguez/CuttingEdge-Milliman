@@ -12,7 +12,8 @@
       RatesModel --> HullWhite
       EquityModel --> BlackScholes
       Constants --> Utils
-      Pricer
+      Pricer --> EuropeanPricer
+      Pricer --> AsianPricer
 ```
 
 
