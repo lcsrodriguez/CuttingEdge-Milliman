@@ -24,13 +24,22 @@ A generic plan of our research project:
     - Pricing of vanilla European derivatives
     - Analysis of the distribution of $S_T$ for $T > 0$
 
-<i>To start with this project, please follows the procedure detailed <a href="/getting-started">here</a></i>.
+<i>To start with this project, please follows the procedure detailed <a href="getting-started/">here</a></i>.
 
 ## About
 
 This academic project has been conducted in association with [Milliman](https://milliman.com/) and [University of Paris-Saclay](https://www.universite-paris-saclay.fr/).
 
 Our research group is composed of **Amal BACHA**, **Dalia BARBI**, **Khalil BATTIKH**, **Lucas RODRIGUEZ** and **Naïm SOUNI**, engineering student in the [M2 Quantitative Finance](https://www.universite-paris-saclay.fr/formation/master/mathematiques-et-applications/m2-finance-quantitative) of [University of Paris-Saclay](https://www.universite-paris-saclay.fr/).
+
+ <div class="row">
+  <div class="column">
+    <img src="img/Milliman.png" alt="Milliman" style="width:100%">
+  </div>
+  <div class="column">
+    <img src="img/UPS.png" alt="Université Paris-Saclay" style="width:80%">
+  </div>
+</div> 
 
 
 ## Bug tracker & Contribution
