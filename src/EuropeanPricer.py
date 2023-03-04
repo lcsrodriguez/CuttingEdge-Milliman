@@ -10,4 +10,7 @@ class EuropeanPricer(Pricer):
 
     with maturity $T > 0$ and strike (exercise price) $K > 0$
     """
-    pass
+    
+    def __init__(self) -> None:
+        super().__init__()
+        

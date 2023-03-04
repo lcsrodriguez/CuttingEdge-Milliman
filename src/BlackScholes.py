@@ -101,12 +101,12 @@ class BlackScholes(EquityModel):
                 sim = self.simulate_euler(**kwargs)
                 if m == 1:
                     res.append(sim["t"])
-                res.append(sim["r"])
+                res.append(sim["S"])
             elif scheme == Constants.Scheme.MILSTEIN:
                 sim = self.simulate_milstein(**kwargs)
                 if m == 1:
                     res.append(sim["t"])
-                res.append(sim["r"])
+                res.append(sim["S"])
         return res
     
     def simulate_euler(self,
