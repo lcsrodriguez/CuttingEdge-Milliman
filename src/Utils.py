@@ -11,6 +11,7 @@ from enum import Enum
 import missingno as msn
 import QuantLib as ql
 from .Constants import *
+from tqdm.notebook import trange, tqdm
 
 # Silencing all warnings for a better UX
 warnings.filterwarnings("ignore")
