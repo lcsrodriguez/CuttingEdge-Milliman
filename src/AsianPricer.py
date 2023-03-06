@@ -47,10 +47,13 @@ class AsianPricer(Pricer):
         # Updating N_MC if different
         self.N_MC = N_MC
 
-        print("Simulating trajectories") # check if we add a tqdm handler
         # Simulating the trajectories necessary to Monte-Carlo
-        trajectories = [self.model.simulate_euler(getRates=True) for _ in range(self.N_MC)]
-
+        trajectories = []
+        R = trange(self.N_MC, colour="blue", desc="Sim. progress")
+        for i in R:
+            R.set_description(f"Iteration #{i}/{N_MC}")
+            trajectories.append(self.model.simulate_euler(getRates=True))
+        
         # Casting it into pandas DataFrames for a better handling (using slicing)
         trajectories = [Utils.cast_df(k) for k in trajectories]
 

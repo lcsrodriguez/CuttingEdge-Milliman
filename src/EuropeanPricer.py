@@ -50,7 +50,6 @@ class EuropeanPricer(Pricer):
 
 
         # Simulating the trajectories necessary to Monte-Carlo
-        print("Simulating trajectories")
         trajectories = []
         R = trange(self.N_MC, colour="red", desc="Sim. progress")
         for i in R:
