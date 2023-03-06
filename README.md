@@ -11,7 +11,7 @@
 2. Analysis via derivatives pricing 
 
 
-*Project conducted in collaboration with [Milliman](https://www.milliman.com/en/)*.
+*Project conducted in collaboration with [Milliman](https://www.milliman.com/en/) and [University of Paris-Saclay](https://www.universite-paris-saclay.fr/).*.
 
 
 ## Architecture
