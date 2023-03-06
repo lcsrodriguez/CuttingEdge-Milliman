@@ -2,6 +2,7 @@ from .Pricer import *
 from .Constants import *
 from .EquityModel import *
 from .Utils import *
+import pandas
 
 class EuropeanPricer(Pricer):
     r"""Class representing a pricer of an European option 
@@ -34,7 +35,7 @@ class EuropeanPricer(Pricer):
             self.simulate_samples(N_MC=N_MC)
     
 
-    def simulate_samples(self, N_MC: int = Constants.MC_DEFAULT_ITERS) -> pd.DataFrame: # trajectories to be stored (for caching)
+    def simulate_samples(self, N_MC: int = Constants.MC_DEFAULT_ITERS) -> pandas.DataFrame: # trajectories to be stored (for caching)
         r"""Function which simulates prices trajectories
 
         Args:
