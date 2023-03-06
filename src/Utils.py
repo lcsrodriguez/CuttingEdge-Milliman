@@ -39,7 +39,8 @@ class Utils:
     @staticmethod
     def generate_correlated_gaussians(rho: float = 0.5,
                                   T: float = 1.0,
-                                  N: int = Constants.MAX_STEPS) -> np.ndarray:
+                                  N: int = Constants.MAX_STEPS,
+                                  verbose: bool = False) -> np.ndarray:
         r"""Function which generates a series of two Gaussian series correlated by the given
         factor $\rho \in \left]-1, 1\right[$
 
@@ -47,6 +48,7 @@ class Utils:
             rho (float, optional): Correlation ratio given by the user. Defaults to 0.5.
             T (float, optional): Time horizon (upper bound of the time interval). Defaults to 1.0.
             N (int, optional): Number of step in the time mesh. Defaults to Constants.MAX_STEPS.
+            verbose (bool, optional): Boolean to verbose. Defaults to False.
 
         Returns:
             np.ndarray: 2 numpy arrays which corresponds to *Brownian increments* ($(dB_t)_t$ and $(dW_t)_t$)
@@ -70,10 +72,11 @@ class Utils:
         CX = np.dot(L, X)
         
         # Checking the correlation ratio of the simulated BM
-        corr_coeff = np.corrcoef(CX.cumsum(axis=1))[1][0]
-        print("-------------- Generation of Brownian Motions --------------")
-        print(f"Simulated rho: {corr_coeff} \tGiven rho: {rho}\nAbsolute error: {np.abs(corr_coeff - rho)}")
-        
+        if verbose:
+            corr_coeff = np.corrcoef(CX.cumsum(axis=1))[1][0]
+            print("-------------- Generation of Brownian Motions --------------")
+            print(f"Simulated rho: {corr_coeff} \tGiven rho: {rho}\nAbsolute error: {np.abs(corr_coeff - rho)}")
+            
         # Return the correlated paths
         return CX
     
