@@ -52,8 +52,8 @@ class EuropeanPricer(Pricer):
         # Simulating the trajectories necessary to Monte-Carlo
         trajectories = [self.model.simulate_euler(getRates=True) for _ in range(self.N_MC)]
 
-        # Casting it into a pandas DataFrame for a better handling (using slicing)
-        trajectories = Utils.cast_df(trajectories)
+        # Casting it into pandas DataFrames for a better handling (using slicing)
+        trajectories = [Utils.cast_df(k) for k in trajectories]
 
         # Storing the results
         self.trajectories = trajectories
@@ -63,8 +63,12 @@ class EuropeanPricer(Pricer):
         return self.trajectories
 
 
-    def compute_option_price(self, K: float, contract: Constants.Contract.CALL) -> float:
+    def compute_option_price(self, K: float, contract: Constants.Contract = Constants.Contract.CALL) -> float:
         r"""Function computing and returning the option price thanks to a Monte-Carlo simulation, depending on its contract type
+
+        $$
+        \phi^i := \exp\Big(-\int_{0}^T r^i_u \mathrm{d}u\Big)\Pi(S^i_T, K)
+        $$
 
         Args:
             K (float): Strike price (Exercise price)
@@ -105,7 +109,7 @@ class EuropeanPricer(Pricer):
             integral = scipy.integrate.simpson(R_[i], t)
 
             # Computing the coefficient $\phi_i$
-            phi = np.exp(-integral)*Pricer.CALL_PAYOFF(S_T_[i])
+            phi = np.exp(-integral)*PAYOFF_FUNCTION(x=S_T_[i], K=K)
 
             # Appending the $\phi_i$
             PHIS.append(phi)
