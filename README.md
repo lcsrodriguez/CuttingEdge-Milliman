@@ -22,7 +22,6 @@ The dependency tree below shows the links between each declared class in the sou
 
 ```mermaid
   graph TD;
-      subgraph Simulation
       Model --> RatesModel
       Model --> EquityModel
       RatesModel --> Vasicek
@@ -31,16 +30,11 @@ The dependency tree below shows the links between each declared class in the sou
       Scenario -. Components .-> HullWhite
       EquityModel --> BlackScholes
       EquityModel --> Heston
-      end
 
-      subgraph Assets
       Constants --> Utils
-      end
 
-      subgraph Pricing
       Pricer --> EuropeanPricer
       Pricer --> AsianPricer
-      end
 ```
 
 **Remark**: `Model`, `RatesModel` and `EquityModel` are *abstract* classes and do not contain any implemented methods.

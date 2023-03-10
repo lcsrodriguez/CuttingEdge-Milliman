@@ -12,7 +12,10 @@
       RatesModel --> HullWhite
       Scenario -. Components .-> HullWhite
       EquityModel --> BlackScholes
+      EquityModel --> Heston
+
       Constants --> Utils
+
       Pricer --> EuropeanPricer
       Pricer --> AsianPricer
 ```
