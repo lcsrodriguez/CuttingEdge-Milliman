@@ -21,7 +21,7 @@
 The dependency tree below shows the links between each declared class in the source code.
 
 ```mermaid
-  graph LR;
+  graph TD;
       subgraph Simulation
       Model --> RatesModel
       Model --> EquityModel
@@ -32,10 +32,12 @@ The dependency tree below shows the links between each declared class in the sou
       EquityModel --> BlackScholes
       EquityModel --> Heston
       end
+
       subgraph Assets
       Constants --> Utils
       end
-      subgraph Pricint
+
+      subgraph Pricing
       Pricer --> EuropeanPricer
       Pricer --> AsianPricer
       end
