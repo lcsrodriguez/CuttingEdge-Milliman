@@ -10,6 +10,7 @@
       RatesModel --> Vasicek
       RatesModel --> CIR
       RatesModel --> HullWhite
+      Scenario -. Components .-> HullWhite
       EquityModel --> BlackScholes
       Constants --> Utils
       Pricer --> EuropeanPricer

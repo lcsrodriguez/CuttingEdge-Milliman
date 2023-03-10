@@ -27,6 +27,7 @@ The dependency tree below shows the links between each declared class in the sou
       RatesModel --> Vasicek
       RatesModel --> CIR
       RatesModel --> HullWhite
+      Scenario -. Components .-> HullWhite
       EquityModel --> BlackScholes
       Constants --> Utils
       Pricer --> EuropeanPricer
