@@ -3,11 +3,179 @@
 
 !!! success "Command"
     ```
-    git log >> out.md
+    git log > out.md
     ```
 
-*As of* **Tue Feb 28 21:37:22 2023+0100**
+*As of* **Fri Mar 10 10:17:38 2023 +0100**
 ```
+commit c1b29383eea8495c9d43a1d312904af2191be498
+Author: lcsrodriguez <lucasrodriguez.08@outlook.com>
+Date:   Fri Mar 10 10:17:38 2023 +0100
+
+    Adding Heston model
+
+commit 396631b540324cdff56bc613491b59faafcb0494
+Author: lcsrodriguez <lucasrodriguez.08@outlook.com>
+Date:   Fri Mar 10 10:01:29 2023 +0100
+
+    Update of class tree 3
+
+commit c423f68de004376e20199bbf1774f35966a0a55c
+Author: lcsrodriguez <lucasrodriguez.08@outlook.com>
+Date:   Fri Mar 10 10:00:20 2023 +0100
+
+    Update of class tree 2
+
+commit c1b1e74be35aa03bf98c64046ee9d2cc366bc12f
+Author: lcsrodriguez <lucasrodriguez.08@outlook.com>
+Date:   Fri Mar 10 09:56:56 2023 +0100
+
+    Update of class tree
+
+commit b25e324a1b509753c80f92f047cc7ee72c2b639b
+Author: lcsrodriguez <lucasrodriguez.08@outlook.com>
+Date:   Fri Mar 10 09:52:55 2023 +0100
+
+    Update of class tree
+
+commit 1a8a1411d8c2ad3d0623fcf08144c8cc607fb96d
+Author: lcsrodriguez <lucasrodriguez.08@outlook.com>
+Date:   Fri Mar 10 09:48:26 2023 +0100
+
+    Adding class Scenario
+
+commit 0f0ce587b8e68aee548150ceecaaeb5d7871f584
+Author: lcsrodriguez <lucasrodriguez.08@outlook.com>
+Date:   Tue Mar 7 14:55:13 2023 +0100
+
+    Adding RE-EXEC
+
+commit 8b8d8a1924f520a9723c3148c729768841731500
+Author: lcsrodriguez <lucasrodriguez.08@outlook.com>
+Date:   Tue Mar 7 10:54:12 2023 +0100
+
+    Adding binder link
+
+commit 5661e11bd6e63ad6defa50539ca51407ff039cac
+Author: lcsrodriguez <lucasrodriguez.08@outlook.com>
+Date:   Tue Mar 7 10:32:18 2023 +0100
+
+    Adding pricing cells on notebook
+
+commit a2510c19abb8a374c1d74d07388f2ba2ca03c8de
+Author: lcsrodriguez <lucasrodriguez.08@outlook.com>
+Date:   Tue Mar 7 00:02:49 2023 +0100
+
+    Updatin requirements
+
+commit 95a1ada844c2faef48b019632774e4e3421ed2f6
+Author: lcsrodriguez <lucasrodriguez.08@outlook.com>
+Date:   Tue Mar 7 00:02:19 2023 +0100
+
+    Adding TQDM support on Asian pricer
+
+commit 7551bdf78911e15a5ee5d281befd754fc3baff25
+Author: lcsrodriguez <lucasrodriguez.08@outlook.com>
+Date:   Tue Mar 7 00:01:33 2023 +0100
+
+    Adding TQDM support on European pricer
+
+commit b2d583fe0d0562025a81f6ebaf17afa5879d5949
+Author: lcsrodriguez <lucasrodriguez.08@outlook.com>
+Date:   Mon Mar 6 23:46:41 2023 +0100
+
+    Adding verbsoe on correlated Brownians
+
+commit c858c010f4ca83d872d8422e46eb562ae63c8a71
+Author: lcsrodriguez <lucasrodriguez.08@outlook.com>
+Date:   Mon Mar 6 23:44:50 2023 +0100
+
+    Adding final implementation of Asian pricer + user instructions on notebook to test it
+
+commit 78c4be3363859a63544c26dff3a272d49766363b
+Author: lcsrodriguez <lucasrodriguez.08@outlook.com>
+Date:   Mon Mar 6 23:26:36 2023 +0100
+
+    Adding final implementation of European pricer + user instructions on notebook to test it
+
+commit d11677830b64a04d18508e0940bef2eae15a8067
+Author: lcsrodriguez <lucasrodriguez.08@outlook.com>
+Date:   Mon Mar 6 23:01:44 2023 +0100
+
+    Final implementation of European pricer (with minor update)
+
+commit 26ea626c0dc33e5a97ff5c501ccc10075bdc23aa
+Author: lcsrodriguez <lucasrodriguez.08@outlook.com>
+Date:   Mon Mar 6 23:00:22 2023 +0100
+
+    Final implementation of European pricer
+
+commit f6590366adfabc3b2820e3309eaf73793a8f3aee
+Author: lcsrodriguez <lucasrodriguez.08@outlook.com>
+Date:   Mon Mar 6 22:44:10 2023 +0100
+
+    Adding simulate_paths() function
+
+commit cc379f13b724f5b0426f85989444612918e5f62a
+Author: lcsrodriguez <lucasrodriguez.08@outlook.com>
+Date:   Sat Mar 4 22:10:22 2023 +0100
+
+    Updating tree in README
+
+commit fabaf19582673aca459dfe452e0c21f98133a844
+Author: lcsrodriguez <lucasrodriguez.08@outlook.com>
+Date:   Sat Mar 4 22:06:57 2023 +0100
+
+    Adding first implementation of European pricer
+
+commit 1d1806c9ac5ace96fb3c3ce10ef47b7c9e5f6ff7
+Author: lcsrodriguez <lucasrodriguez.08@outlook.com>
+Date:   Sat Mar 4 19:29:50 2023 +0100
+
+    Adding experiments for MC on Asian pricer
+
+commit b1aa29c57c73cef8e5f1f4a8de5df53fefe44269
+Author: lcsrodriguez <lucasrodriguez.08@outlook.com>
+Date:   Sat Mar 4 19:23:48 2023 +0100
+
+    Adding experiments for MC on European pricer 2
+
+commit 9899ddc5bf327b12d2f8f87439296dde11f6a8dd
+Author: lcsrodriguez <lucasrodriguez.08@outlook.com>
+Date:   Sat Mar 4 18:41:00 2023 +0100
+
+    Adding experiments for MC on European pricer
+
+commit 6e9720a99ee0d95410388068ffbf6e962c350bd8
+Author: lcsrodriguez <lucasrodriguez.08@outlook.com>
+Date:   Thu Mar 2 10:01:29 2023 +0100
+
+    Adding partners images
+
+commit 5e909848e1a74aa61c6f97ead907ae76bfd26cba
+Author: lcsrodriguez <lucasrodriguez.08@outlook.com>
+Date:   Thu Mar 2 00:01:00 2023 +0100
+
+    Adding Asian and European pricers
+
+commit 3aa199dac819b568f21a5f006c7e62136287e011
+Author: lcsrodriguez <lucasrodriguez.08@outlook.com>
+Date:   Wed Mar 1 23:32:26 2023 +0100
+
+    Updating requirements.txt + architecture
+
+commit cb0542c9a63f0cef0f762540f21ac0deb4f15659
+Author: lcsrodriguez <lucasrodriguez.08@outlook.com>
+Date:   Tue Feb 28 22:22:20 2023 +0100
+
+    Adding RELEASES
+
+commit 2cb9f5334b46594c02f77d0b2d5462a5b63452f9
+Author: lcsrodriguez <lucasrodriguez.08@outlook.com>
+Date:   Tue Feb 28 21:57:14 2023 +0100
+
+    Adding Git History + documents/
+
 commit e8913174b2978751701d72e715c4cb1457cb80d8
 Author: lcsrodriguez <lucasrodriguez.08@outlook.com>
 Date:   Tue Feb 28 21:37:22 2023 +0100
@@ -463,7 +631,4 @@ Author: lcsrodriguez <lucasrodriguez.08@outlook.com>
 Date:   Wed Feb 15 22:12:50 2023 +0100
 
     Adding README
-
-
-
 ```
