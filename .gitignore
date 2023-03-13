@@ -8,3 +8,5 @@ site/*
 */__pycache__/
 out.txt
 RELEASES.md
+test/*
+!test/.gitkeep

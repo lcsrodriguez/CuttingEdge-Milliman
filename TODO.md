@@ -1,10 +1,5 @@
 # TODO
 
-- OOP to handle model parameters
-- Typing module
-- Add descriptions for each model
-
-
 ## Calcul brownien
 
 - Pour calcul des browniens, on met rho dans l'equity model (rho à mettre dans le c-tor de BS)

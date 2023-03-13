@@ -39,9 +39,9 @@ class Utils:
 
     @staticmethod
     def generate_correlated_gaussians(rho: float = 0.5,
-                                  T: float = 1.0,
-                                  N: int = Constants.MAX_STEPS,
-                                  verbose: bool = False) -> np.ndarray:
+                                      T: float = 1.0,
+                                      N: int = Constants.MAX_STEPS,
+                                      verbose: bool = False) -> np.ndarray:
         r"""Function which generates a series of two Gaussian series correlated by the given
         factor $\rho \in \left]-1, 1\right[$
 
@@ -92,3 +92,37 @@ class Utils:
         # Computing the Gaussian increments
         CX = Utils.generate_correlated_gaussians(*args, **kwargs)
         return [path.cumsum() for path in CX]
+    
+    @staticmethod
+    def generate_ndim_correlated_gaussians(mu: np.ndarray,
+                                           sigma: np.ndarray, 
+                                           T: float = 1.0, 
+                                           N: int = Constants.MAX_STEPS, 
+                                           verbose: bool = False) -> np.ndarray:
+        r"""Function which generates a series of two Gaussian series correlated by the given
+        vector of means : $\mu \in \mathbb{R}^n$ and correlation matrix $\Sigma \in \mathcal{S}_n$
+
+        The underlying algorithm generates samples of increments from a correlated Brownian motion with a given mean $\mu$ and Variance-Covariance matrix $\Sigma$.
+        
+        The algorithm uses the fact that if you have $n$ independent brownian motions, the samples given by $\mu + C\times Z$ are distributed as $\mathcal{N}(\mu,\Sigma)$, where:
+        
+        - $Z \sim \mathcal{N}(0, 1)$ *(Gaussian variate)*
+        - $\mu$ is the vector of means
+        - $C$ is the square root of the Variance-Covariance matrix.
+
+        $$C = \Sigma^{\frac{1}{2}}$$
+
+        To compute the square root of the variance-covariance matrix $C$, the **Cholesky decomposition** is implemented.
+
+
+        Args:
+            mu (np.ndarray): Vector of means given by the user
+            sigma (np.ndarray): Correlation matrix given by the user
+            T (float, optional): Time horizon (upper bound of the time interval). Defaults to 1.0.
+            N (int, optional): Number of step in the time mesh. Defaults to Constants.MAX_STEPS.
+            verbose (bool, optional): Boolean to verbose. Defaults to False.
+
+        Returns:
+            np.ndarray: $n \in \mathbb{N}^+$ numpy arrays which corresponds to *Brownian increments* ($(dW^1_t)_t, \ldots, (dW^n_t)_t$)
+        """
+        pass
