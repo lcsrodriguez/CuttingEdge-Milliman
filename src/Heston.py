@@ -16,3 +16,4 @@ class Heston(EquityModel):
     
     # Name of the model
     MODEL_NAME = "HESTON"
+    pass
