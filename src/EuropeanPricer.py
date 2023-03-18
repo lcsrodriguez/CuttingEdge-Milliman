@@ -67,7 +67,9 @@ class EuropeanPricer(Pricer):
         return self.trajectories
 
 
-    def compute_option_price(self, K: float, contract: Constants.Contract = Constants.Contract.CALL) -> float:
+    def compute_option_price(self, K: float, 
+                             contract: Constants.Contract = Constants.Contract.CALL,
+                             ci_levels: Union[List[Constants.Level], Constants.Level] = Constants.Level.LEVEL_95) -> float:
         r"""Function computing and returning the option price thanks to a Monte-Carlo simulation, depending on its contract type
 
         $$
@@ -120,9 +122,45 @@ class EuropeanPricer(Pricer):
         
         # Computing the option price by aggregating the previously-computed results
         OPTION_PRICE = (1/self.N_MC)*sum(PHIS)
-        return OPTION_PRICE
 
-    def compute_option_price_call(self, K: float) -> float:
+        # Casting into a Numpy array to access statistic methods
+        PHIS = np.array(PHIS)
+
+        # Computing Monte-Carlo confidence intervals
+        CI_LEVELS = []
+
+        # Filtering with respect to the input type
+        if type(ci_levels) == Constants.Level or (type(ci_levels) == list and len(ci_levels) == 1):
+            if type(ci_levels) == list and len(ci_levels) == 1:
+                CI_LEVELS.append(ci_levels[0])
+            else:
+                CI_LEVELS.append(ci_levels)
+        elif type(ci_levels) == list:
+            CI_LEVELS += ci_levels
+        
+        print(f"Required CI levels: ", Utils.get_level_values(CI_LEVELS))
+        
+        CI_DICT = {level.value: None for level in CI_LEVELS}
+        # For each required CI level
+        for level in CI_LEVELS:
+            # Getting the respective Z-score
+            a = Constants.Z_SCORES[level.value]
+            
+            # Computing the CI factor
+            ci_factor = a*(PHIS.std())/np.sqrt(self.N_MC)
+
+            # Computing the lower/upper bounds of the CI interval
+            ci = {
+                "lower": OPTION_PRICE - ci_factor, 
+                "upper": OPTION_PRICE + ci_factor,
+                "radius": ci_factor
+            }
+            CI_DICT[level.value] = ci
+
+        # Returning the option price and the Confidence interval
+        return {"price": OPTION_PRICE, "ci": CI_DICT}
+
+    def compute_option_price_call(self, K: float, *args, **kwargs) -> float:
         r"""Function computing and returning the call option price thanks to a Monte-Carlo simulation
 
         Args:
@@ -131,9 +169,9 @@ class EuropeanPricer(Pricer):
         Returns:
             float: Call option price
         """        
-        return self.compute_option_price(K=K, contract=Constants.Contract.CALL)
+        return self.compute_option_price(K=K, contract=Constants.Contract.CALL, *args, **kwargs)
 
-    def compute_option_price_put(self, K: float) -> float:
+    def compute_option_price_put(self, K: float, *args, **kwargs) -> float:
         r"""Function computing and returning the put option price thanks to a Monte-Carlo simulation
 
         Args:
@@ -142,4 +180,4 @@ class EuropeanPricer(Pricer):
         Returns:
             float: Put option price
         """       
-        return self.compute_option_price(K=K, contract=Constants.Contract.PUT)
+        return self.compute_option_price(K=K, contract=Constants.Contract.PUT, *args, **kwargs)

@@ -12,6 +12,7 @@ import missingno as msn
 import QuantLib as ql
 from .Constants import *
 from tqdm.notebook import trange, tqdm
+from typing import List, Union
 
 # Silencing all warnings for a better UX
 warnings.filterwarnings("ignore")
@@ -25,6 +26,18 @@ class Utils:
     Static class for utils functions
     """
     
+    @staticmethod
+    def get_level_values(x: List[Constants.Level]) -> Union[List[int], List[float], List[Union[int, float]]]:
+        r"""Function returning the list of the CI level values
+
+        Args:
+            x (List[Constants.Level]): List of CI levels
+
+        Returns:
+            Union[List[int], List[float], List[Union[int, float]]]: List of level values
+        """
+        return [level.value for level in x]
+
     @staticmethod
     def cast_df(x: dict | list | np.ndarray | pd.Series) -> pd.DataFrame:
         r"""Function to explicitly cast a dictionary or Numpy array into a **pandas** `DataFrame`
