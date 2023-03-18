@@ -28,4 +28,9 @@ class Constants:
         99.9: 3.291
     }
     # Reference: https://www.alchemer.com/resources/blog/how-to-calculate-confidence-intervals/
+    
+    # Available Confidence interval levels
+    AVAILABLE_CI_LEVELS = list(Z_SCORES.keys())
 
+    # Enumeration of available levels
+    Level = Enum("Level", dict((f"LEVEL_{str(k).replace('.', '_')}", k) for k in list(Z_SCORES.keys())))
