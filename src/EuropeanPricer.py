@@ -3,6 +3,7 @@ from .Constants import *
 from .EquityModel import *
 from .Utils import *
 import pandas
+import numpy
 
 class EuropeanPricer(Pricer):
     r"""Class representing a pricer of an European option 
@@ -184,12 +185,12 @@ class EuropeanPricer(Pricer):
         """       
         return self.compute_option_price(K=K, contract=Constants.Contract.PUT, *args, **kwargs)
 
-    def get_MC_convergence_evolution(self, K: float, N_MC_values: Union[np.ndarray, List[float]], contract: Constants.Contract = Constants.Contract.CALL, *args, **kwargs) -> pd.DataFrame:
+    def get_MC_convergence_evolution(self, K: float, N_MC_values: Union[numpy.ndarray, List[float]], contract: Constants.Contract = Constants.Contract.CALL, *args, **kwargs) -> pandas.DataFrame:
         r"""Function executing the pricer for each value given in `N_MC_values`
 
         Args:
             K (float): Strike price (Exercise price)
-            N_MC_values (Union[np.ndarray, List[float]]): Array containing the $N_{MC}$ values (number of simulations) to be tested
+            N_MC_values (Union[numpy.ndarray, List[float]]): Array containing the $N_{MC}$ values (number of simulations) to be tested
             contract (Constants.Contract, optional): Contract option type (PUT or CALL). Defaults to Constants.Contract.CALL.
 
         Returns:
