@@ -77,7 +77,7 @@ class Utils:
             #print(ci_level)
 
         # Setting the plotting options
-        plt.legend(loc='center left', bbox_to_anchor=(1, 0.5), title="d")  
+        plt.legend(loc='center left', bbox_to_anchor=(1, 0.5), title="Markers")  
         plt.title("Confidence intervals distribution for Monte-Carlo pricing")
         plt.grid()
 
