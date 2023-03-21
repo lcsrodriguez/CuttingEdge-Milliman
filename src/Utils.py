@@ -12,7 +12,7 @@ import missingno as msn
 import QuantLib as ql
 from .Constants import *
 from tqdm.notebook import trange, tqdm
-from typing import List, Union
+from typing import List, Union, Any
 
 # Silencing all warnings for a better UX
 warnings.filterwarnings("ignore")
@@ -26,6 +26,63 @@ class Utils:
     Static class for utils functions
     """
     
+    @staticmethod
+    def get_dict_values(x: dict) -> Any:
+        r"""Function taking a random dictionary and unpacking it by returning its values
+
+        Args:
+            x (dict): Dictionary (Hashmap)
+
+        Returns:
+            Any: Values
+        """
+        return x.values()
+    
+    @staticmethod
+    def plot_confidence_intervals(pricer_res: dict) -> None:
+        r"""Function plotting the confidence intervals and the price from a given pricer
+
+        Args:
+            pricer_res (dict): Resulting hashtable of a pricer
+
+        Returns:
+            None: No return (only plot on stdout)
+        """
+        # Getting pricer & confidence interval
+        price, ci = Utils.get_dict_values(x=pricer_res)
+
+        plt.figure(figsize=(10, 5))
+
+        # Declaring color for 
+        colors = ["green", "blue", "purple", "orange", "magenta"]
+
+        # Plotting the price line
+        plt.axvline(x=price, color="red", label="MC price")
+
+        # Removing the y-ticks
+        plt.yticks([], [])
+
+        # For each confidence interval level computed during the pricing step
+        for i, ci_level in enumerate(ci.items()):
+            # Getting the CI level and the upper/lower boundaries
+            ci_level_ = ci_level[0]
+            boundaries = ci_level[1]
+            
+            # Plotting for each CI, the upper and lower boundaries
+            plt.axvline(x = boundaries["lower"], color=colors[i], label=f"CI {ci_level_}%", ls="-.")
+            plt.axvline(x = boundaries["upper"], color=colors[i], ls="-.")
+            
+            # Defining the limits of the x-axis
+            plt.xlim([boundaries["lower"] - 0.5, boundaries["upper"] + 0.5])
+            #print(ci_level)
+
+        # Setting the plotting options
+        plt.legend(loc='center left', bbox_to_anchor=(1, 0.5), title="d")  
+        plt.title("Confidence intervals distribution for Monte-Carlo pricing")
+        plt.grid()
+
+        return None
+
     @staticmethod
     def get_level_values(x: List[Constants.Level]) -> Union[List[int], List[float], List[Union[int, float]]]:
         r"""Function returning the list of the CI level values
