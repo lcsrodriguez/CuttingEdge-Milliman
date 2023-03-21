@@ -10,3 +10,4 @@ out.txt
 RELEASES.md
 test/*
 !test/.gitkeep
+export/*.pkl
