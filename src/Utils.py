@@ -16,6 +16,9 @@ from typing import List, Union, Any
 import multiprocessing
 import os
 
+# Setting default figure sizes for Matplotlib
+plt.rcParams["figure.figsize"] = [10, 5]
+
 # Silencing all warnings for a better UX
 warnings.filterwarnings("ignore")
 
