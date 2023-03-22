@@ -13,6 +13,8 @@ import QuantLib as ql
 from .Constants import *
 from tqdm.notebook import trange, tqdm
 from typing import List, Union, Any
+import multiprocessing
+import os
 
 # Silencing all warnings for a better UX
 warnings.filterwarnings("ignore")
@@ -25,6 +27,20 @@ class Utils:
     r"""
     Static class for utils functions
     """
+
+    @staticmethod
+    def get_multiprocessing_infos() -> dict:
+        r"""Function returning several informations about multiprocessing application
+
+        Returns:
+            dict: Hashtable of information
+        """
+        # Returning useful informations
+        return {
+            "AVAILABLE_CPU_CORES": os.cpu_count(),
+            "MP_ACTIVE_CHILDREN": multiprocessing.active_children(),
+            "MP_CPU_COUNT": multiprocessing.cpu_count()
+        }
     
     @staticmethod
     def get_dict_values(x: dict) -> Any:
