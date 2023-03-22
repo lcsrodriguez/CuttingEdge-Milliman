@@ -72,6 +72,7 @@ extra_css:
 nav:
   - Home: index.md
   - Getting started: getting-started.md
+  - How To: how-to.md
   - Architecture: architecture.md
   - Code Reference: reference/summary.md
   - Bibliography: bibliography.md
