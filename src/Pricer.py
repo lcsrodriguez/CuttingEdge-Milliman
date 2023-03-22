@@ -38,6 +38,23 @@ class Pricer:
         """  
         return max(0, K - x)
     
+
+    def simulate_samples_parallel(self, N_MC: int, N_PROC: int) -> pandas.DataFrame:
+        r"""Function simulating prices trajectories
+
+        Args:
+            N_MC (int): Number of Monte-Carlo trajectories
+            N_PROC (int): Number of processes to be spawned
+
+        Returns:
+            pandas.DataFrame: Trajectories results
+        """
+
+        # Computing the workload ratio per process
+        WORKLOAD_PER_PROCESS: int = N_MC//N_PROC
+        print(WORKLOAD_PER_PROCESS)
+        pass
+
     def simulate_samples(self, N_MC: int = Constants.MC_DEFAULT_ITERS) -> pandas.DataFrame: # trajectories to be stored (for caching)
         r"""Function which simulates prices trajectories
 

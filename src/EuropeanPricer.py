@@ -2,8 +2,6 @@ from .Pricer import *
 from .Constants import *
 from .EquityModel import *
 from .Utils import *
-import pandas
-import numpy
 
 class EuropeanPricer(Pricer):
     r"""Class representing a pricer of an European option 
