@@ -49,7 +49,7 @@ class AsianPricer(Pricer):
 
         # Simulating the trajectories necessary to Monte-Carlo
         trajectories = []
-        R = trange(self.N_MC, colour="blue", desc="Sim. progress")
+        R = trange(self.N_MC, colour="red", desc="Sim. progress")
         for i in R:
             R.set_description(f"Iteration #{i}/{N_MC}")
             trajectories.append(self.model.simulate_euler(getRates=True))
@@ -123,25 +123,3 @@ class AsianPricer(Pricer):
         # Computing the option price by aggregating the previously-computed results
         OPTION_PRICE = (1/self.N_MC)*sum(PHIS)
         return OPTION_PRICE
-
-    def compute_option_price_call(self, K: float) -> float:
-        r"""Function computing and returning the call option price thanks to a Monte-Carlo simulation
-
-        Args:
-            K (float): Strike price (Exercise price)
-
-        Returns:
-            float: Call option price
-        """        
-        return self.compute_option_price(K=K, contract=Constants.Contract.CALL)
-
-    def compute_option_price_put(self, K: float) -> float:
-        r"""Function computing and returning the put option price thanks to a Monte-Carlo simulation
-
-        Args:
-            K (float): Strike price (Exercise price)
-
-        Returns:
-            float: Put option price
-        """       
-        return self.compute_option_price(K=K, contract=Constants.Contract.PUT)
