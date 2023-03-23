@@ -26,7 +26,7 @@ _ = plt.legend()
 ```
 
 <div class="img-demo">
-    <img src="/img/screens/vasicek.png">
+    <img src="../img/screens/vasicek.png">
 </div>
 
 
@@ -46,7 +46,7 @@ _ = plt.legend()
 ```
 
 <div class="img-demo">
-    <img src="/img/screens/vasicek_multi.png">
+    <img src="../img/screens/vasicek_multi.png">
 </div>
 
 ## Simulate $l$ correlated Brownian motions paths
@@ -95,7 +95,7 @@ _ = plt.suptitle(f"Asset price $(S_t)$ and underlying rates $(r_t)$ with\n{r.MOD
 ```
 
 <div class="img-demo">
-    <img src="/img/screens/bs.png">
+    <img src="../img/screens/bs.png">
 </div>
 
 ## Pricing an option 
@@ -186,11 +186,12 @@ ap.compute_option_price_put(K)
 Example below with the European option pricer
 
 <div class="img-demo">
-    <img src="/img/screens/CI_levels.png">
+    <img src="../img/screens/CI_levels.png">
 </div>
 
 
 ## Conduct an analysis study
 
 
-## Hull & White 
+## Define a Hull & White model
+
