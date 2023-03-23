@@ -72,7 +72,7 @@ class Utils:
         colors = ["blue", "green", "orange", "purple", "magenta"]
 
         # Plotting the MC price
-        data.T["price"].plot(figsize=(15, 7), color="red", label="MC price")
+        data.T["price"].plot(color="red", label="MC price")
 
         # Retrieving the ci intervals to get the keys for looping
         ci = data.T["ci"].iloc[0]
@@ -109,7 +109,7 @@ class Utils:
         # Getting pricer & confidence interval
         price, ci = Utils.get_dict_values(x=pricer_res)
 
-        plt.figure(figsize=(10, 5))
+        #plt.figure(figsize=(10, 5))
 
         # Declaring color for 
         colors = ["green", "blue", "purple", "orange", "magenta"]

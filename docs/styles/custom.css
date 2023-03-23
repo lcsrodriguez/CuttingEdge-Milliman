@@ -26,3 +26,13 @@
     clear: both;
     display: table;
 }
+
+.img-demo {
+    text-align: center;
+}
+
+.img-demo img {
+    width: 86%;
+    margin: auto;
+    display: block;
+}

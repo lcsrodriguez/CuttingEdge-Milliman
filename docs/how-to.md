@@ -25,6 +25,11 @@ _ = plt.title(f"Simulation of 1 path of Vasicek model\n{model.get_parameter_stri
 _ = plt.legend()
 ```
 
+<div class="img-demo">
+    <img src="/img/screens/vasicek.png">
+</div>
+
+
 ### Simulate $k \in \mathbb{N}^*$ trajectories
 
 In this example, we set $k := 8$
@@ -39,6 +44,10 @@ _ = plt.ylabel("Interest rates")
 _ = plt.title(f"Simulation of {NB_TRAJECTORIES} paths of Vasicek model\n{model.get_parameter_string()}")
 _ = plt.legend()
 ```
+
+<div class="img-demo">
+    <img src="/img/screens/vasicek_multi.png">
+</div>
 
 ## Simulate $l$ correlated Brownian motions paths
 
@@ -84,6 +93,10 @@ axes[0].legend()
 axes[1].legend()
 _ = plt.suptitle(f"Asset price $(S_t)$ and underlying rates $(r_t)$ with\n{r.MODEL_NAME}{r.get_parameter_string()} & {model.get_parameter_string()}")
 ```
+
+<div class="img-demo">
+    <img src="/img/screens/bs.png">
+</div>
 
 ## Pricing an option 
 
@@ -167,6 +180,14 @@ ap.compute_option_price_call(K)
 # Put price
 ap.compute_option_price_put(K)
 ```
+
+## Plot 
+
+Example below with the European option pricer
+
+<div class="img-demo">
+    <img src="/img/screens/CI_levels.png">
+</div>
 
 
 ## Conduct an analysis study
