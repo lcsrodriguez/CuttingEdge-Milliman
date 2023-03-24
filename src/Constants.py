@@ -34,3 +34,10 @@ class Constants:
 
     # Enumeration of available levels
     Level = Enum("Level", dict((f"LEVEL_{str(k).replace('.', '_')}", k) for k in list(Z_SCORES.keys())))
+
+
+    # Pool of available functions to avoid negative interest-rates generation through CIR model
+    CIR_HELPER_FUNCTIONS = {
+        "ABSOLUTE": lambda x: abs(x),
+        "MAX_0": lambda x: max(0, x)
+    }
