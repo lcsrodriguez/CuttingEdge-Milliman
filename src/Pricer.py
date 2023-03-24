@@ -51,11 +51,41 @@ class Pricer:
         """
 
         # Computing the workload ratio per process
-        WORKLOAD_PER_PROCESS: int = N_MC//N_PROC
-        print(WORKLOAD_PER_PROCESS)
-        pass
+        WORKLOAD_PER_PROCESS: int = int(N_MC//N_PROC)
+        print(f"Number of processes: {N_PROC}")
+        print(f"Number of simulations: {N_MC}")
+        print(f"Workload per process: {WORKLOAD_PER_PROCESS}")
 
-    def simulate_samples(self, N_MC: int = Constants.MC_DEFAULT_ITERS) -> pandas.DataFrame: # trajectories to be stored (for caching)
+        # Array containing the results from each job's execution
+        results = []
+        
+        # Declaring 1 queue for each process
+        queues = [multiprocessing.Queue() for _ in range(N_PROC)]
+        
+        # Declaring arguments
+        args = [(WORKLOAD_PER_PROCESS, True, queues[i]) for i in range(N_PROC)]
+        
+        # Declaring 1 job for each process
+        jobs = [multiprocessing.Process(target=self.simulate_samples, args=(a)) for a in args]
+
+        for j in jobs:
+            print(f"Init process")
+            j.start()
+            
+        for q in queues:
+            print(f"Getting results")
+            results.append(q.get())
+        
+        for j in jobs:
+            print("Ending process")
+            j.join()
+
+        # Aggregating the results
+        S = results
+
+        return S
+
+    def simulate_samples(self, N_MC: int = Constants.MC_DEFAULT_ITERS, parallel: bool = False, q: Any = None) -> pandas.DataFrame: # trajectories to be stored (for caching)
         r"""Function which simulates prices trajectories
 
         Args:
@@ -67,13 +97,18 @@ class Pricer:
         
         # Updating N_MC if different
         self.N_MC = N_MC
-
+        print(N_MC)
         # Simulating the trajectories necessary to Monte-Carlo
         trajectories = []
-        R = trange(self.N_MC, colour="red", desc="Sim. progress")
-        for i in R:
-            R.set_description(f"Iteration #{i}/{N_MC}")
-            trajectories.append(self.model.simulate_euler(getRates=True))
+        if parallel:
+            R = range(N_MC)
+            for i in R:
+                trajectories.append(self.model.simulate_euler(getRates=True))
+        else:
+            R = trange(N_MC, colour="red", desc="Sim. progress")
+            for i in R:
+                R.set_description(f"Iteration #{i}/{N_MC}")
+                trajectories.append(self.model.simulate_euler(getRates=True))
 
         # Casting it into pandas DataFrames for a better handling (using slicing)
         trajectories = [Utils.cast_df(k) for k in trajectories]
@@ -82,8 +117,13 @@ class Pricer:
         self.trajectories = trajectories
         self.isSimulated = True
 
-        # Returning the trajectories
-        return self.trajectories
+        # Checking whether parallelism is activated
+        if parallel:
+            # If parallel simulator activated, we put the simulated trajectories into the given Queue
+            q.put(self.trajectories)
+        else:
+            # Otherwise, use of serial simulator by returning the trajectories
+            return self.trajectories
 
     def compute_option_price(self, K: float, 
                              contract: Constants.Contract = Constants.Contract.CALL,
