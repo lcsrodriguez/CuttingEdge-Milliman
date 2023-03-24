@@ -68,17 +68,19 @@ class Pricer:
         # Declaring 1 job for each process
         jobs = [multiprocessing.Process(target=self.simulate_samples, args=(a)) for a in args]
 
-        for j in jobs:
-            print(f"Init process")
+        for i, j in enumerate(jobs): 
+            print(f"Starting {i}")
             j.start()
-            
-        for q in queues:
-            print(f"Getting results")
+
+        for i, q in enumerate(queues): 
+            print(f"Getting results from {i}")
             results.append(q.get())
-        
-        for j in jobs:
-            print("Ending process")
+
+        for i, j in enumerate(jobs): 
+            print(f"Waiting for results from {i}")
             j.join()
+
+
 
         # Aggregating the results
         S = results
@@ -101,14 +103,15 @@ class Pricer:
         # Simulating the trajectories necessary to Monte-Carlo
         trajectories = []
         if parallel:
+            print(f"PARA: {N_MC}")
             R = range(N_MC)
             for i in R:
-                trajectories.append(self.model.simulate_euler(getRates=True))
+                trajectories.append(self.model.simulate_euler(N = int(1e3), getRates=True))
         else:
             R = trange(N_MC, colour="red", desc="Sim. progress")
             for i in R:
                 R.set_description(f"Iteration #{i}/{N_MC}")
-                trajectories.append(self.model.simulate_euler(getRates=True))
+                trajectories.append(self.model.simulate_euler(N = int(1e3), getRates=True))
 
         # Casting it into pandas DataFrames for a better handling (using slicing)
         trajectories = [Utils.cast_df(k) for k in trajectories]
