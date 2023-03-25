@@ -106,12 +106,12 @@ class Pricer:
             print(f"PARA: {N_MC}")
             R = range(N_MC)
             for i in R:
-                trajectories.append(self.model.simulate_euler(N = int(1e3), getRates=True))
+                trajectories.append(self.model.simulate_euler(getRates=True))
         else:
             R = trange(N_MC, colour="red", desc="Sim. progress")
             for i in R:
                 R.set_description(f"Iteration #{i}/{N_MC}")
-                trajectories.append(self.model.simulate_euler(N = int(1e3), getRates=True))
+                trajectories.append(self.model.simulate_euler(getRates=True))
 
         # Casting it into pandas DataFrames for a better handling (using slicing)
         trajectories = [Utils.cast_df(k) for k in trajectories]
