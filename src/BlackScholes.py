@@ -130,7 +130,7 @@ class BlackScholes(EquityModel):
         H = np.arange(0, T, dT)
 
         # Generating the dW array
-        dB, dW = Utils.generate_correlated_gaussians(rho=self.rho)
+        dB, dW = Utils.generate_correlated_gaussians(self.rho)
 
         # Initializing the rates array
         S = np.zeros(N)
@@ -173,7 +173,7 @@ class BlackScholes(EquityModel):
         H = np.arange(0, T, dT)
 
         # Generating the dW array
-        dB, dW = Utils.generate_correlated_gaussians(rho=self.rho)
+        dB, dW = Utils.generate_correlated_gaussians(self.rho)
 
         # Initializing the rates array
         S = np.zeros(N)
