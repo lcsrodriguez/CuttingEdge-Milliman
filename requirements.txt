@@ -1,3 +1,4 @@
+ipynbname
 numpy
 pandas
 scipy
