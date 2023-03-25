@@ -52,9 +52,7 @@ class Pricer:
 
         # Computing the workload ratio per process
         WORKLOAD_PER_PROCESS: int = int(N_MC//N_PROC)
-        print(f"Number of processes: {N_PROC}")
-        print(f"Number of simulations: {N_MC}")
-        print(f"Workload per process: {WORKLOAD_PER_PROCESS}")
+        print(f"# proc.: {N_PROC} \t # sim.: {N_MC} \t Workload pp: {WORKLOAD_PER_PROCESS}")
 
         # Array containing the results from each job's execution
         results = []
@@ -73,11 +71,11 @@ class Pricer:
             j.start()
 
         for i, q in enumerate(queues): 
-            print(f"Getting results from {i}")
+            print(f"Getting {i}")
             results.append(q.get())
 
         for i, j in enumerate(jobs): 
-            print(f"Waiting for results from {i}")
+            print(f"Waiting {i}")
             j.join()
 
 
@@ -99,11 +97,11 @@ class Pricer:
         
         # Updating N_MC if different
         self.N_MC = N_MC
-        print(N_MC)
+        #print(N_MC)
         # Simulating the trajectories necessary to Monte-Carlo
         trajectories = []
         if parallel:
-            print(f"PARA: {N_MC}")
+            #print(f"PARA: {N_MC}")
             R = range(N_MC)
             for i in R:
                 trajectories.append(self.model.simulate_euler(getRates=True))

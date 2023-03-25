@@ -6,7 +6,7 @@ class Constants:
     """
 
     # Global variables & constants
-    MAX_STEPS = int(1e5)
+    MAX_STEPS = int(2e4)
 
     # Monte-Carlo pricing iterations
     MC_DEFAULT_ITERS = int(5e2)
