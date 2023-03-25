@@ -78,11 +78,8 @@ class Pricer:
             print(f"Waiting {i}")
             j.join()
 
-
-
         # Aggregating the results
         S = results
-
         return S
 
     def simulate_samples(self, N_MC: int = Constants.MC_DEFAULT_ITERS, parallel: bool = False, q: Any = None) -> pandas.DataFrame: # trajectories to be stored (for caching)

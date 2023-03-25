@@ -70,7 +70,7 @@ class BlackScholes(EquityModel):
             return f"($S_0$ = {self.S0}, $\sigma$ = {self.sigma})"
         return f"(S0 = {self.S0}, sigma = {self.sigma})"
     
-    def simulate_path(self, scheme: Constants.Scheme = Constants.Scheme.EULER, **kwargs) -> dict:
+    def simulate_path(self, scheme: Constants.Scheme = Constants.Scheme.EULER, *args, **kwargs) -> dict:
         r"""Function wrapping the 2 available simulators to simulate 1 path
 
         Args:
@@ -80,10 +80,10 @@ class BlackScholes(EquityModel):
             dict: Hashmap of results with keys `t` for time interval and `r` for rates simulation results
         """
         if scheme == Constants.Scheme.EULER:
-            return self.simulate_euler(**kwargs)
-        return self.simulate_milstein(**kwargs)
+            return self.simulate_euler(*args, **kwargs)
+        return self.simulate_milstein(*args, **kwargs)
     
-    def simulate_paths(self, M: int = 3, scheme: Constants.Scheme = Constants.Scheme.EULER, **kwargs) -> dict:
+    def simulate_paths(self, M: int = 3, scheme: Constants.Scheme = Constants.Scheme.EULER, *args, **kwargs) -> dict:
         r"""Function wrapping the 2 available simulators to simulate **several** paths
 
         Args:
@@ -98,12 +98,12 @@ class BlackScholes(EquityModel):
         res = []
         for m in range(1, M + 1):
             if scheme == Constants.Scheme.EULER:
-                sim = self.simulate_euler(**kwargs)
+                sim = self.simulate_euler(*args, **kwargs)
                 if m == 1:
                     res.append(sim["t"])
                 res.append(sim["S"])
             elif scheme == Constants.Scheme.MILSTEIN:
-                sim = self.simulate_milstein(**kwargs)
+                sim = self.simulate_milstein(*args, **kwargs)
                 if m == 1:
                     res.append(sim["t"])
                 res.append(sim["S"])

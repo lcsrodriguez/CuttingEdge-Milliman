@@ -155,7 +155,7 @@ class Utils:
         return [level.value for level in x]
 
     @staticmethod
-    def cast_df(x: dict | list | np.ndarray | pd.Series) -> pd.DataFrame:
+    def cast_df(x: dict | list | np.ndarray | pd.Series, *args, **kwargs) -> pd.DataFrame:
         r"""Function to explicitly cast a dictionary or Numpy array into a **pandas** `DataFrame`
 
         Args:
@@ -164,13 +164,13 @@ class Utils:
         Returns:
             pd.DataFrame: Output Pandas `DataFrame`
         """
-        return pd.DataFrame(x)
+        return pd.DataFrame(x, *args, **kwargs)
 
     @staticmethod
     def generate_correlated_gaussians(Sigma: Union[np.ndarray, list, float], 
-                                           T: float = 1.0, 
-                                           N: int = Constants.MAX_STEPS, 
-                                           verbose: bool = False) -> Union[np.ndarray, None]:
+                                      T: float = 1.0, 
+                                      N: int = Constants.MAX_STEPS, 
+                                      verbose: bool = False) -> Union[np.ndarray, None]:
         r"""Function which generates a series of two Gaussian series correlated by the given
         vector of means : $\mu \in \mathbb{R}^n$ and correlation matrix $\Sigma \in \mathcal{S}_n$
 
@@ -187,16 +187,19 @@ class Utils:
         To compute the square root of the variance-covariance matrix $C$, the **Cholesky decomposition** is implemented.
 
 
+        **Reference**: [https://quantessence.files.wordpress.com/2012/01/multibrownianmotion.pdf](https://quantessence.files.wordpress.com/2012/01/multibrownianmotion.pdf)
+        
+        
         Args:
-            mu (np.ndarray): Vector of means given by the user
-            sigma (np.ndarray): Correlation matrix given by the user
+            Sigma (Union[np.ndarray, list, float]): Correlation matrix or correlation ratio (float number)
             T (float, optional): Time horizon (upper bound of the time interval). Defaults to 1.0.
             N (int, optional): Number of step in the time mesh. Defaults to Constants.MAX_STEPS.
             verbose (bool, optional): Boolean to verbose. Defaults to False.
 
         Returns:
-            np.ndarray: $n \in \mathbb{N}^+$ numpy arrays which corresponds to *Brownian increments* ($(dW^1_t)_t, \ldots, (dW^n_t)_t$)
+            Union[np.ndarray, None]: $k \in \mathbb{N}^+$ numpy arrays which corresponds to *Brownian increments* ($(dW^1_t)_t, \ldots, (dW^n_t)_t$)
         """
+
 
         # If the given correlation is a matrix (2-DIM)
         if isinstance(Sigma, float):
@@ -247,8 +250,10 @@ class Utils:
             return None
     
     def generate_correlated_brownians(*args, **kwargs) -> np.ndarray:
-        """Function which generates a series of $k$ Brownian motions correlated by the 
-        given correlation matrix $$\Sigma \in \mathcal{S}^{++}_k
+        r"""Function which generates a series of $k$ Brownian motions correlated by the 
+        given correlation matrix 
+        
+        $$\Sigma \in \mathcal{S}^{++}_k$$
 
         Returns:
             np.ndarray: Numpy array containg the $k$ Brownian motion trajectories
