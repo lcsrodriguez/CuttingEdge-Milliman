@@ -12,6 +12,20 @@ class Heston(EquityModel):
 
     $$\mathrm{d}V_t := \kappa(\theta - V_t)\mathrm{d}t + \eta\sqrt{V_t}\mathrm{d}\widetilde{W_t}$$
 
+    As for the correlation matrix $\Sigma$, it is expected to be of the following form
+
+    $$ \Sigma := \begin{bmatrix}
+    \rho_{11} & \rho_{12} & \rho_{13} \\
+    \rho_{21} & \rho_{22} & \rho_{23} \\
+    \rho_{31} & \rho_{32} & \rho_{33} 
+    \end{bmatrix} = \begin{bmatrix}
+    1 & \rho_{21} & \rho_{31} \\
+    \rho_{21} & 1 & \rho_{32} \\
+    \rho_{31} & \rho_{32} & 1
+    \end{bmatrix}  \in \mathcal{S}^{++}_3  $$
+
+    where $\forall (i, j) \in \lbrace 1, 2, 3\rbrace^2, \ \rho_{ij} := \text{Cov}(W^i, W^j)$
+
     """
     
     # Name of the model
