@@ -18,7 +18,7 @@ import os
 
 # Setting default figure sizes for Matplotlib
 plt.rcParams["figure.figsize"] = [10, 5] # Figure sizes for Matplotlib 
-plt.rcParams["axes.prop_cycle"] = plt.cycler(color=["blue", "green", "red", "orange", "purple", "magenta"]) # Color for plotting
+plt.rcParams["axes.prop_cycle"] = plt.cycler(color=["blue", "green", "red", "orange", "purple", "magenta", "gray", "black"]) # Color for plotting
 
 # Silencing all warnings for a better UX
 warnings.filterwarnings("ignore")

@@ -1,4 +1,4 @@
-# General Makefile
+# General Makefile for auto. doc generation
 
 # Enable the test webserver to vizualize the documentation
 on:
