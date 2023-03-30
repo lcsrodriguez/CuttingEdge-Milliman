@@ -11,6 +11,7 @@
       RatesModel --> CIR
       RatesModel --> HullWhite
       Scenario -. Components .-> HullWhite
+      ZeroCouponHandler -. Components .-> HullWhite
       EquityModel --> BlackScholes
       EquityModel --> Heston
 

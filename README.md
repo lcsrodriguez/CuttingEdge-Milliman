@@ -28,6 +28,7 @@ The dependency tree below shows the links between each declared class in the sou
       RatesModel --> CIR
       RatesModel --> HullWhite
       Scenario -. Components .-> HullWhite
+      ZeroCouponHandler -. Components .-> HullWhite
       EquityModel --> BlackScholes
       EquityModel --> Heston
 
