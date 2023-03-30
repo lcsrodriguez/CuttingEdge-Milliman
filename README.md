@@ -8,10 +8,12 @@
 
 1. Implementation of path simulators for:
     - Interest rates models: Vasicek, Cox-Ingersoll-Ross (CIR), Hull & White
-    - Equity-index models: Black-Scholes with stochastic rates
+    - Equity-index models: Black-Scholes & Heston with stochastic rates
     - Use of Euler-Maruyama and Milstein numerical methods to solve SDEs dynamics
-2. Analysis via derivatives pricing 
-
+2. Analysis study
+    - Via derivatives pricing (MC convergence, CI spatial distribution)
+    - Quantile analysis
+    - Parameters impact
 
 *Project conducted in collaboration with [Milliman](https://www.milliman.com/en/) and [University of Paris-Saclay](https://www.universite-paris-saclay.fr/).*.
 
