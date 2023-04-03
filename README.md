@@ -102,4 +102,4 @@ mdkocs build
 
 [See `LICENSE` file](LICENSE)
 - **Amal BACHA - Dalia BARBI - Khalil BATTIKH - Lucas RODRIGUEZ - Naïm SOUNI**
-- *Academic works (January 2023 - Present)*
+- *Academic works (January - April2023)*
