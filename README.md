@@ -1,8 +1,11 @@
 # Cutting-Edge Project - Milliman
 
 <img src="https://img.shields.io/static/v1?label=Range&message=Academic project&color=007bff"/>&nbsp;&nbsp;<img src="https://img.shields.io/static/v1?label=Languages&message=Python&color=ff0000"/>&nbsp;&nbsp;<img src="https://img.shields.io/static/v1?label=Restriction&message=YES&color=26c601"/>
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/lcsrodriguez/CuttingEdge-Milliman)  &nbsp;![python version | 3.10+](https://img.shields.io/badge/python%20version-3.10+-magenta)
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/lcsrodriguez/CuttingEdge-Milliman/main) &nbsp;[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/lcsrodriguez/CuttingEdge-Milliman)
+**Lauchpad**: 
+- [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/lcsrodriguez/CuttingEdge-Milliman/main)
+- [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/lcsrodriguez/CuttingEdge-Milliman)
 
 ## Overview
 
@@ -102,4 +105,4 @@ mdkocs build
 
 [See `LICENSE` file](LICENSE)
 - **Amal BACHA - Dalia BARBI - Khalil BATTIKH - Lucas RODRIGUEZ - Naïm SOUNI**
-- *Academic works (January - April2023)*
+- *Academic works (January - April 2023)*
