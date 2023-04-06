@@ -40,7 +40,7 @@ class EuropeanPricer(Pricer):
                              K: float, 
                              contract: Constants.Contract = Constants.Contract.CALL,
                              ci_levels: Union[List[Constants.Level], Constants.Level] = Constants.Level.LEVEL_95,
-                             N_MC: int = Constants.MC_DEFAULT_ITERS) -> float:
+                             N_MC: int = Constants.MC_DEFAULT_ITERS) -> dict:
         r"""Function computing and returning the option price thanks to a Monte-Carlo simulation, depending on its contract type
 
         $$
@@ -49,15 +49,16 @@ class EuropeanPricer(Pricer):
 
         Args:
             K (float): Strike price (Exercise price)
-            contract (Constants.Contract.CALL): Contract option type (PUT or CALL)
-            N_MC (int, optional): Number of Monte-Carlo trajectories to be simulated. Defaults to Constants.MC_DEFAULT_ITERS.
+            contract (Constants.Contract, optional): Contract option type (PUT or CALL). Defaults to Constants.Contract.CALL.
+            ci_levels (Union[List[Constants.Level], Constants.Level], optional): Confidence interval levels required. Defaults to Constants.Level.LEVEL_95.
+            N_MC (int, optional): Number of Monte-Carlo samples to simulate. Defaults to Constants.MC_DEFAULT_ITERS.
 
         Raises:
-            Exception: Exception regarding the contract type
+            Exception: Raised if the contract type given as input is not valid
 
         Returns:
-            float: Option price
-        """        
+            dict: Option price (**price** key) and CI levels (**ci** key)
+        """      
 
         # If not simulated yet, we simulate the trajectories
         if not self.isSimulated:

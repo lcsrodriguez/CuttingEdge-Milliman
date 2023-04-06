@@ -9,6 +9,7 @@ class ZeroCouponHandler:
 
     def __init__(self) -> None:
         pass
+    
     def get_data() -> None:
         r"""
         Reading the data from the Excel file in the `assets/data` sub-folder
