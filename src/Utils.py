@@ -24,7 +24,7 @@ plt.rcParams["axes.prop_cycle"] = plt.cycler(color=["blue", "green", "red", "ora
 warnings.filterwarnings("ignore")
 
 # Setting up a fixed random seed for experiment purposes
-npr.seed(1)
+#npr.seed(1)
 
 
 class Utils:
