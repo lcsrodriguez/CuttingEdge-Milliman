@@ -13,7 +13,10 @@ class EuropeanPricer(Pricer):
     with maturity $T > 0$ and strike (exercise price) $K > 0$
     """
     
-    def __init__(self, udl_model: EquityModel, preCompute: bool = False, N_MC: int = Constants.MC_DEFAULT_ITERS) -> None:
+    def __init__(self, 
+                 udl_model: EquityModel, 
+                 preCompute: bool = False, 
+                 N_MC: int = Constants.MC_DEFAULT_ITERS) -> None:
         r"""Construtor function retrieving and storing the underlying price model
 
         Args:
@@ -33,7 +36,8 @@ class EuropeanPricer(Pricer):
             print("Pre-computing the equity trajectories")
             self.simulate_samples(N_MC=N_MC)
     
-    def compute_option_price(self, K: float, 
+    def compute_option_price(self, 
+                             K: float, 
                              contract: Constants.Contract = Constants.Contract.CALL,
                              ci_levels: Union[List[Constants.Level], Constants.Level] = Constants.Level.LEVEL_95,
                              N_MC: int = Constants.MC_DEFAULT_ITERS) -> float:

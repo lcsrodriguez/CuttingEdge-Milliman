@@ -14,7 +14,10 @@ class AsianPricer(Pricer):
     with maturity $T > 0$ and strike (exercise price) $K > 0$
     """
 
-    def __init__(self, udl_model: EquityModel, preCompute: bool = False, N_MC: int = Constants.MC_DEFAULT_ITERS) -> None:
+    def __init__(self, 
+                 udl_model: EquityModel, 
+                 preCompute: bool = False, 
+                 N_MC: int = Constants.MC_DEFAULT_ITERS) -> None:
         r"""Construtor function retrieving and storing the underlying price model
 
         Args:
@@ -34,7 +37,11 @@ class AsianPricer(Pricer):
             print("Pre-computing the equity trajectories")
             self.simulate_samples(N_MC=N_MC)
 
-    def compute_option_price(self, K: float, contract: Constants.Contract = Constants.Contract.CALL) -> float:
+    def compute_option_price(self, 
+                             K: float, 
+                             contract: Constants.Contract = Constants.Contract.CALL,
+                             ci_levels: Union[List[Constants.Level], Constants.Level] = Constants.Level.LEVEL_95,
+                             N_MC: int = Constants.MC_DEFAULT_ITERS) -> float:
         r"""Function computing and returning the option price thanks to a Monte-Carlo simulation, depending on its contract type
 
         $$
@@ -54,7 +61,7 @@ class AsianPricer(Pricer):
 
         # If not simulated yet, we simulate the trajectories
         if not self.isSimulated:
-            self.simulate_samples()
+            self.simulate_samples(N_MC=N_MC)
 
         # Defining the payoff function according to the contract type
         if contract == Constants.Contract.CALL:
@@ -69,7 +76,7 @@ class AsianPricer(Pricer):
         T = t.iloc[-1]
 
         # Retrieving the list of last-time underlying asset price $S^i_T$
-        S_T_ = [self.trajectories[k]["S"].iloc[-1] for k in range(len(self.trajectories))]
+        #S_T_ = [self.trajectories[k]["S"].iloc[-1] for k in range(len(self.trajectories))]
 
         # Retrieving the list of asset prices $(S^i_t)_t$
         S_ = [self.trajectories[k]["S"].to_numpy() for k in range(len(self.trajectories))]
@@ -92,4 +99,40 @@ class AsianPricer(Pricer):
         
         # Computing the option price by aggregating the previously-computed results
         OPTION_PRICE = (1/self.N_MC)*sum(PHIS)
-        return OPTION_PRICE
+
+        # Casting into a Numpy array to access statistic methods
+        PHIS = np.array(PHIS)
+
+        # Computing Monte-Carlo confidence intervals
+        CI_LEVELS = []
+
+        # Filtering with respect to the input type
+        if type(ci_levels) == Constants.Level or (type(ci_levels) == list and len(ci_levels) == 1):
+            if type(ci_levels) == list and len(ci_levels) == 1:
+                CI_LEVELS.append(ci_levels[0])
+            else:
+                CI_LEVELS.append(ci_levels)
+        elif type(ci_levels) == list:
+            CI_LEVELS += ci_levels
+        
+        print(f"Required CI levels: ", Utils.get_level_values(CI_LEVELS))
+        
+        CI_DICT = {level.value: None for level in CI_LEVELS}
+        # For each required CI level
+        for level in CI_LEVELS:
+            # Getting the respective Z-score
+            a = Constants.Z_SCORES[level.value]
+            
+            # Computing the CI factor
+            ci_factor = a*(PHIS.std())/np.sqrt(self.N_MC)
+
+            # Computing the lower/upper bounds of the CI interval
+            ci = {
+                "lower": OPTION_PRICE - ci_factor, 
+                "upper": OPTION_PRICE + ci_factor,
+                "radius": ci_factor
+            }
+            CI_DICT[level.value] = ci
+
+        # Returning the option price and the Confidence interval
+        return {"price": OPTION_PRICE, "ci": CI_DICT}
