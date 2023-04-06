@@ -167,7 +167,7 @@ class Heston(EquityModel):
 
         # Computing simultaneously the underlying price and 
         for t in range(N - 1):
-            S[t + 1] = S[t] + (simulated_rates[t]*S[t])*dT + np.sqrt(V[t])*dW1[t] #+ (1/2)*(self.sigma**2)*S[t]*(dW1[t]**2 - dT)
+            S[t + 1] = S[t] + (simulated_rates[t]*S[t])*dT + np.sqrt(V[t])*S[t]*dW1[t] #+ (1/2)*(self.sigma**2)*S[t]*(dW1[t]**2 - dT)
             V[t + 1] = V[t] + self.kappa*(self.theta - V[t])*dT + self.eta*np.sqrt(V[t])*dW2[t]
 
         # Check for right output
@@ -217,10 +217,9 @@ class Heston(EquityModel):
 
         # Computing simultaneously the underlying price and 
         for t in range(N - 1):
-            S[t + 1] = S[t] + (simulated_rates[t]*S[t])*dT + np.sqrt(V[t])*dW1[t] #+ (1/2)*(self.sigma**2)*S[t]*(dW1[t]**2 - dT)
+            S[t + 1] = S[t] + (simulated_rates[t]*S[t])*dT + np.sqrt(V[t])*S[t]*dW1[t] + (1/2)*(dW1[t]**2 - dT)*V[t]*S[t]
             V[t + 1] = V[t] + self.kappa*(self.theta - V[t])*dT + self.eta*np.sqrt(V[t])*dW2[t]
-            # TODO: Check the Milstein scheme for the Heston model
-        
+                    
         # Check for right output
         if getRates and getVariance:
             return {"t": H, "S": S, "V": V, "r": simulated_rates}
