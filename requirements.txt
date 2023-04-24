@@ -1,5 +1,5 @@
 ipynbname==2021.3.2
-numpy==1.23.5
+numpy==1.24.3
 pandas==1.5.3
 scipy==1.9.1
 matplotlib==3.5.3
