@@ -19,23 +19,23 @@ class Vasicek(RatesModel):
     # Name of the model
     MODEL_NAME = "VASICEK"
     
-    def __init__(self, r0: float, kappa: float, theta: float, eta: float) -> None:
+    def __init__(self, r0: float, kappa: float, theta: float, sigma: float) -> None:
         r"""Default constructor in order to verify the validity of the parameters, and store them
 
         Args:
             r0 (float): Initial value $r_0$ of the process $(r_t)_t$ at time $t = 0$
             kappa (float): Mean-reversion speed parameter $\kappa$s
             theta (float): Mean-reversion center parameter $\theta$
-            eta (float): Volatility (constant) parameter $\eta$
+            sigma (float): Volatility (constant) parameter $\sigma$
         """
         # Verification
-        assert r0 > 0 and kappa > 0 and theta > 0 and eta > 0
+        assert r0 > 0 and kappa > 0 and theta > 0 and sigma > 0
         
         # Storing variable
         self.r0 = r0
         self.kappa = kappa
         self.theta = theta
-        self.eta = eta
+        self.sigma = sigma
         
     def __repr__(self) -> str:
         r"""Hard string representation
@@ -64,8 +64,8 @@ class Vasicek(RatesModel):
             str: Output string of each parameter's value
         """ 
         if onLaTeX:
-            return f"($r_0$ = {self.r0}, $\kappa$ = {self.kappa}, $\\theta$ = {self.theta}, $\eta$ = {self.eta})"
-        return f"(r0 = {self.r0}, kappa = {self.kappa}, theta = {self.theta}, eta = {self.eta})"
+            return f"($r_0$ = {self.r0}, $\kappa$ = {self.kappa}, $\\theta$ = {self.theta}, $\sigma$ = {self.sigma})"
+        return f"(r0 = {self.r0}, kappa = {self.kappa}, theta = {self.theta}, sigma = {self.sigma})"
 
     def simulate_path(self, scheme: Constants.Scheme = Constants.Scheme.EULER, **kwargs) -> dict:
         r"""Function wrapping the 2 available simulators to simulate 1 path
@@ -136,7 +136,7 @@ class Vasicek(RatesModel):
 
         # Computing the rates
         for t in range(N - 1):
-            r[t + 1] = r[t] + self.kappa*(self.theta - r[t])*dT + self.eta*dB[t]
+            r[t + 1] = r[t] + self.kappa*(self.theta - r[t])*dT + self.sigma*dB[t]
         return {"t": H, "r":r}
         
     def simulate_milstein(self,
