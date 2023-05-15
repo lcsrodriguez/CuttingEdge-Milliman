@@ -39,7 +39,7 @@ A generic plan of our research project:
 
 This academic project has been conducted in association with [Milliman](https://milliman.com/) and [University of Paris-Saclay](https://www.universite-paris-saclay.fr/).
 
-Our research group is composed of **Amal BACHA**, **Dalia BARBI**, **Khalil BATTIKH**, **Lucas RODRIGUEZ** and **Naïm SOUNI**, engineering student in the [M2 Quantitative Finance](https://www.universite-paris-saclay.fr/formation/master/mathematiques-et-applications/m2-finance-quantitative) of [University of Paris-Saclay](https://www.universite-paris-saclay.fr/).
+Our research group is composed of **Amal BACHA**, **Dalia BARBI**, **Khalil BATTIKH**, **Lucas RODRIGUEZ** and **Naïm SOUNI**, engineering students in the [M2 Quantitative Finance](https://www.universite-paris-saclay.fr/formation/master/mathematiques-et-applications/m2-finance-quantitative) of [University of Paris-Saclay](https://www.universite-paris-saclay.fr/).
 
  <div class="row">
   <div class="column">
