@@ -188,10 +188,3 @@ Example below with the European option pricer
 <div class="img-demo">
     <img src="../img/screens/CI_levels.png">
 </div>
-
-
-## Conduct an analysis study
-
-
-## Define a Hull & White model
-

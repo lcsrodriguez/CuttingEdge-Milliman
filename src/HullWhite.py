@@ -10,7 +10,7 @@ class HullWhite(RatesModel):
     $$
         \left\{
         \begin{aligned}
-            \mathrm{d}r_t &= (\theta(t) - a*r_t)\mathrm{d}t + \sigma \mathrm{d}B_t \\
+            \mathrm{d}r_t &= (\theta(t) - ar_t)\mathrm{d}t + \sigma \mathrm{d}B_t \\
             r(0) &= r_0
         \end{aligned}
         \right.

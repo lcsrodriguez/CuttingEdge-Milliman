@@ -1,4 +1,4 @@
-# Cutting-Edge project
+# Cutting-Edge project - Group 2
 
 <img src="https://img.shields.io/static/v1?label=Range&message=Academic project&color=007bff"/>&nbsp;&nbsp;<img src="https://img.shields.io/static/v1?label=Languages&message=Python&color=ff0000"/>&nbsp;&nbsp;<img src="https://img.shields.io/static/v1?label=Restriction&message=YES&color=26c601"/>
 
@@ -6,7 +6,7 @@
 
 **Workflows**: ![](https://img.shields.io/badge/Dependabot-enabled-blue)
 
-**Lauchpads**: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/lcsrodriguez/CuttingEdge-Milliman/main) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/lcsrodriguez/CuttingEdge-Milliman)
+**Lauchpads**: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/lcsrodriguez/CuttingEdge-Milliman/main) &nbsp; [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/lcsrodriguez/CuttingEdge-Milliman)
 
 **Documentation**: [Official resource](https://rodrigul.iiens.net/cutting-edge/)
 
@@ -25,9 +25,10 @@ Trajectories of updated equity indices are simulated using models calibrated on 
 A generic plan of our research project:
 
 1. **Interest-rates** modelling $(r_t)_{t\in\mathbb{R}^+}$
-    - Vasicek, CIR, Hull & White, Black-Karasinski, Ho-Lee[^1]
+    - Vasicek, Cox-Ingersoll-Ross (CIR), Hull & White[^1]
 2. **Equity-index** modelling $(S_t)_{t\in\mathbb{R}^+}$
-    - Black-Scholes with stochastic interest rates
+    - Black-Scholes model with stochastic interest rates
+    - Heston model
 3. **In-depth analysis** of simulation results
     - Pricing of vanilla European derivatives
     - Analysis of the distribution of $S_T$ for $T > 0$
@@ -59,4 +60,4 @@ If you have discovered any technical issue within the source code, or you want t
 
 See the [LICENSE](https://github.com/lcsrodriguez/CuttingEdge-Milliman/blob/main/LICENSE) file for more information.
 
-[^1]: Some other models can also be implemented as an extension of this current work
+[^1]: Some other models (Black-Karasinski, Ho-Lee) can also be implemented as an extension of this current work

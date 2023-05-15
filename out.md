@@ -1,13 +1,3 @@
-# Git history
-
-
-!!! success "Command"
-    ```
-    git log > out.md
-    ```
-
-*As of* **Fri Mar 10 10:17:38 2023 +0100**
-```
 commit d59fa257fbb71fee3289a43cd0f282908a6daab4
 Author: lcsrodriguez <lucasrodriguez.08@outlook.com>
 Date:   Mon May 15 21:52:47 2023 +0200
@@ -973,4 +963,3 @@ Author: lcsrodriguez <lucasrodriguez.08@outlook.com>
 Date:   Wed Feb 15 22:12:50 2023 +0100
 
     Adding README
-```
