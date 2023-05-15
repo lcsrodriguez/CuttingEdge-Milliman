@@ -11,3 +11,4 @@ RELEASES.md
 test/*
 !test/.gitkeep
 export/*.pkl
+cr.pdf
