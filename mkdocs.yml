@@ -1,11 +1,11 @@
-site_name: M2QF | Cutting-Edge project | Subject 2
+site_name: M2QF | Cutting-Edge project
 
 theme:
   name: "material"
   palette:
     # Palette toggle for light mode
     - scheme: default
-      primary: teal
+      primary: black # teal
       toggle:
         icon: material/weather-sunny
         name: Switch to dark mode
@@ -37,7 +37,7 @@ repo_url: https://github.com/lcsrodriguez/CuttingEdge-Milliman
 repo_name: GitHub repo
 site_description: Official documentation of Cutting-Edge project
 site_author: Amal BACHA - Dalia BARBI - Khalil BATTIKH - Lucas RODRIGUEZ - Naïm SOUNI
-copyright: Copyright &copy; 2023 Amal BACHA - Dalia BARBI - Khalil BATTIKH - Lucas RODRIGUEZ - Naïm SOUNI<br>Academic work &bull; <i>January 2023 - Present</i>
+copyright: Copyright &copy; 2023 Amal BACHA - Dalia BARBI - Khalil BATTIKH - Lucas RODRIGUEZ - Naïm SOUNI<br>Academic work &bull; <i>January - May 2023</i>
 plugins:
   - search
   - gen-files:

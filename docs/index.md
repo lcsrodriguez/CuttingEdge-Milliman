@@ -10,7 +10,7 @@
 
 **Documentation**: [Official resource](https://rodrigul.iiens.net/cutting-edge/)
 
-*Academic research project conducted between January and April 2023*
+*Academic research project conducted between January and May 2023*
 
 ## Motivation
 
